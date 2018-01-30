@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Android专栏-杜乾，Dusan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Words about dusan&apos;s ideas,notes,android development,blog,projects,and so on.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Android专栏-杜乾，Dusan's blog">
+<meta property="og:url" content="http://duqian.site/page/2/index.html">
+<meta property="og:site_name" content="Android专栏-杜乾，Dusan's blog">
+<meta property="og:description" content="Words about dusan&apos;s ideas,notes,android development,blog,projects,and so on.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android专栏-杜乾，Dusan's blog">
+<meta name="twitter:description" content="Words about dusan&apos;s ideas,notes,android development,blog,projects,and so on.">
+  
+    <link rel="alternative" href="/atom.xml" title="Android专栏-杜乾，Dusan&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic" style="backgroud-image:url("https://duqian291902259.github.io/img/dusan_head.png")">
+			<!-- 
+			<img lazy-src="/img/head_small.png" class="js-avatar">
+			 -->
+			<img src="/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+
+			<!-- <img src="https://duqian291902259.github.io/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;"> -->
+
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Dusan-杜乾</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Android Developer</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about/">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AIDL/" style="font-size: 10px;">AIDL</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-studio/" style="font-size: 10px;">Android studio</a> <a href="/tags/Android笔记/" style="font-size: 13.33px;">Android笔记</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Dusan/" style="font-size: 10px;">Dusan</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/IOS/" style="font-size: 10px;">IOS</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Jadx/" style="font-size: 10px;">Jadx</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/React-Native/" style="font-size: 10px;">React-Native</a> <a href="/tags/Retrofit/" style="font-size: 13.33px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/Weex/" style="font-size: 16.67px;">Weex</a> <a href="/tags/Xposed/" style="font-size: 13.33px;">Xposed</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/okHttp/" style="font-size: 10px;">okHttp</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/webrtc/" style="font-size: 10px;">webrtc</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/反编译/" style="font-size: 10px;">反编译</a> <a href="/tags/图片压缩/" style="font-size: 10px;">图片压缩</a> <a href="/tags/权限/" style="font-size: 10px;">权限</a> <a href="/tags/杜乾/" style="font-size: 10px;">杜乾</a> <a href="/tags/网络/" style="font-size: 13.33px;">网络</a> <a href="/tags/连麦/" style="font-size: 10px;">连麦</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/dzsw0117">杜乾的专栏</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.site/">我的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ximelly.com/">Ximelly的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.net.cn/">Dusan的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Dusan,Android Developer,I&#39;m concentrated on android，web &amp; native.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Dusan-杜乾</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/head_small.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Dusan-杜乾</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Android Developer</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about/">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+  
+    <article id="post-Git&amp;Github操作笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/14/Git&Github操作笔记/" class="article-date">
+  	<time datetime="2016-07-14T03:09:00.000Z" itemprop="datePublished">2016-07-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/14/Git&Github操作笔记/">Git&amp;Github操作笔记</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Git无疑是最牛逼的版本控制系统，Linus的划时代作品，不会就out了。本文是记录git&amp;github常用操作，作为备忘。</p>
+<h3 id="一，push项目（code）到github"><a href="#一，push项目（code）到github" class="headerlink" title="一，push项目（code）到github"></a>一，push项目（code）到github</h3><p>先进入自己的github账户，新增一个仓库，然后使用git管理源码，常用HTTPS或者SSH的方式进行操作。当然也可以使用客户端工具github desktop进行管理。<br>github仓库要求必须有README文件，LICENSE, and .gitignore。.md的创建可以通过命令行或者直接在网页上面新建。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/git/">git</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/07/14/Git&Github操作笔记/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post- Android之Wifi开发" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/06/ Android之Wifi开发/" class="article-date">
+  	<time datetime="2016-07-06T08:10:00.000Z" itemprop="datePublished">2016-07-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/06/ Android之Wifi开发/">Android之Wifi开发</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文主要介绍android与wifi交互的一些应用技巧。常见的场景有：检测wifi，连接wifi，打开wifi设置，检测wifi网络变化，只允许wifi网络下载，获取wifi名称，检测网速等。废话不说，直接贴代码，easy，权当笔记咯。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wifi/">wifi</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/07/06/ Android之Wifi开发/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-weex项目实战Demo：动画，用户向导" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/05/weex项目实战Demo：动画，用户向导/" class="article-date">
+  	<time datetime="2016-07-05T08:10:00.000Z" itemprop="datePublished">2016-07-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/05/weex项目实战Demo：动画，用户向导/">weex项目实战Demo：动画，用户向导</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>weex开源以来，有不少人关注，但由于目前weex团队太忙，很多细节有待完善，我们继续帮weex填坑，体验weex的三端统一的乐趣（实际上，要适配all设备还是挺难的）。写了个简约但完整的weex小案例，仅供参考。可以学习package.json的写法，webpackge的配置，.we文件的写法，以及weex调试等。<br>也可以去github直接看效果:star，fork一下吧！<a href="https://github.com/duqian291902259/weex-demo-dusan">weex-demo-dusan</a></p>
+<p>###一,weex-demo-dusan效果<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Weex/">Weex</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Weex/">Weex</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/07/05/weex项目实战Demo：动画，用户向导/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Weex开发笔记(一)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/28/Weex开发笔记(一)/" class="article-date">
+  	<time datetime="2016-06-28T00:20:00.000Z" itemprop="datePublished">2016-06-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/28/Weex开发笔记(一)/">Weex开发笔记(一)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于weex的环境安装，前面已经介绍了，并且顺利运行android版官方demo，亮点十足，继续关注。本文介绍weex for ios的相关内容，以及遇到的坑，weex入门还是挺简单的，不过目前的bug不少，还需要跟进学习。<br>weex仓库：<a href="https://github.com/alibaba/weex">https://github.com/alibaba/weex</a>。<br>本文主要介绍IOS版的使用，关于android 环境搭建，看：<a href="http://blog.csdn.net/dzsw0117/article/details/51702319">Weex开源测试之环境搭建，weex未来展望</a>。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Weex/">Weex</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Weex/">Weex</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/06/28/Weex开发笔记(一)/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-跨平台开发之React Native初体验" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/16/跨平台开发之React Native初体验/" class="article-date">
+  	<time datetime="2016-06-16T03:19:00.000Z" itemprop="datePublished">2016-06-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/16/跨平台开发之React Native初体验/">跨平台开发之React Native初体验</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ReactNative，你必须知道的事实，它越来越火！作为移动开发者，唯一不能拒绝的就是持续性学习。React Native整套解决方案，FaceBook对它的愿景是“Learn Once，Write AnyWhere”，学习成本只有一次，却完成了多种开发角色的统一，UI统一，跨平台技术越来越666。let’s start！<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOS/">IOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-Native/">React-Native</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/React-Native/">React-Native</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/06/16/跨平台开发之React Native初体验/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Weex开源内测之初体验与未来展望" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/07/Weex开源内测之初体验与未来展望/" class="article-date">
+  	<time datetime="2016-06-07T11:55:00.000Z" itemprop="datePublished">2016-06-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/07/Weex开源内测之初体验与未来展望/">Weex开源内测之初体验与未来展望</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近一直在研究移动终端的跨平台解决方案。ReactNative对Native开发人员来说，学习成本有点高，weex相对有优势。weex内测以来，两个月内已经有5000＋开发者加入weex项目的测试了。我通过阿里weex团队成员，获得了，github内测资格，有权限访问weex仓库，下载了源码，就一起研究下吧。<br>weex环境配置还是比较简单方便的，推荐mac开发，有前端基础上手更快。<br>我咨询了阿里－鬼道，新手学RN还是Weex，有何区别，他给我发了这样一条信息，看看它与React Native的比较：</p>
+<blockquote>
+<p>挺好的问题：</p>
+<ol>
+<li>DSL 语法差异很大，可能 weex 更轻量一些，上手快一些；</li>
+<li>Native 性能 weex 还是有一些优势的，包也更小。
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Weex/">Weex</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Weex/">Weex</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/06/07/Weex开源内测之初体验与未来展望/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-build.gradle的常用配置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/25/build.gradle的常用配置/" class="article-date">
+  	<time datetime="2016-05-25T04:45:33.000Z" itemprop="datePublished">2016-05-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/25/build.gradle的常用配置/">build.gradle的常用配置</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1，project的下的gradle配置"><a href="#1，project的下的gradle配置" class="headerlink" title="1，project的下的gradle配置"></a>1，project的下的gradle配置</h3><p>全当一个笔记，主要是project和modules的区配置，我们都比较清楚，gradle构建配置如下：<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android笔记/">Android笔记</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/05/25/build.gradle的常用配置/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android检测内存泄漏之leakcanary" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/24/Android检测内存泄漏之leakcanary/" class="article-date">
+  	<time datetime="2016-05-24T14:05:50.000Z" itemprop="datePublished">2016-05-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/24/Android检测内存泄漏之leakcanary/">Android检测内存泄漏之leakcanary</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>内存泄漏，memory leak，开发者经常念叨的一个词，稍不留意，就游走在我们的代码中。Andriod开发，内存泄漏的原因有很多，比如activity的context引用，static引用，广播未取消注册，MVP设计时没有detachView，Rx没有取消subscribe订阅，动画处理等。检测的工具也很多。今天总结下，LeakCanary的使用。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内存泄漏/">内存泄漏</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/05/24/Android检测内存泄漏之leakcanary/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android压缩图片，并上传到服务器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/24/Android压缩图片，并上传到服务器/" class="article-date">
+  	<time datetime="2016-05-24T12:55:00.000Z" itemprop="datePublished">2016-05-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/24/Android压缩图片，并上传到服务器/">Android压缩图片，并上传到服务器</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Android开发中上传图片（头像）到服务器，要先压缩图片，获取原图的长宽，然后取得压缩比例，compress到指定的质量，输出保存，然后网络上传这张图片就行了。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片压缩/">图片压缩</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/05/24/Android压缩图片，并上传到服务器/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android studio 集成NDK开发环境" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/12/Android studio 集成NDK开发环境/" class="article-date">
+  	<time datetime="2016-05-12T15:55:00.000Z" itemprop="datePublished">2016-05-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/12/Android studio 集成NDK开发环境/">Android studio 集成NDK开发环境</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android studio 集成NDK开发环境，只要设置ndk路径。如果使用eclipse bundle开发，没有NDK插件，需要导入jar包，和ADT插件一样。如果下载JavaEE for mac 64位，需要安装ADT插件才能开发android应用。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-studio/">Android studio</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDK/">NDK</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/05/12/Android studio 集成NDK开发环境/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    </nav>
+  
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Dusan-杜乾
+    	</div>
+      	<div class="footer-right">
+      		做一个有思想的Open Developer <a href="http://duqian.net.cn" target="_blank">duqian.net.cn</a> 
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?20e4e8625728d88901f9496e026e21c0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  <!-- Google Analytics -->
+<!-- <script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'baidu', 'auto');
+ga('send', 'pageview');
+
+</script> -->
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

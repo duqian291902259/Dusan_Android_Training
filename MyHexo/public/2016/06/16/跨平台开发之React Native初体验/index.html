@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>跨平台开发之React Native初体验 | Android专栏-杜乾，Dusan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ReactNative，你必须知道的事实，它越来越火！作为移动开发者，唯一不能拒绝的就是持续性学习。React Native整套解决方案，FaceBook对它的愿景是“Learn Once，Write AnyWhere”，学习成本只有一次，却完成了多种开发角色的统一，UI统一，跨平台技术越来越666。let’s start！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跨平台开发之React Native初体验">
+<meta property="og:url" content="http://duqian.site/2016/06/16/跨平台开发之React Native初体验/index.html">
+<meta property="og:site_name" content="Android专栏-杜乾，Dusan's blog">
+<meta property="og:description" content="ReactNative，你必须知道的事实，它越来越火！作为移动开发者，唯一不能拒绝的就是持续性学习。React Native整套解决方案，FaceBook对它的愿景是“Learn Once，Write AnyWhere”，学习成本只有一次，却完成了多种开发角色的统一，UI统一，跨平台技术越来越666。let’s start！">
+<meta property="og:image" content="http://img.blog.csdn.net/20160616111653053">
+<meta property="og:image" content="http://img.blog.csdn.net/20160628123538148">
+<meta property="og:image" content="http://img.blog.csdn.net/20160628123651226">
+<meta property="og:image" content="http://img.blog.csdn.net/20160628121828582">
+<meta property="og:image" content="http://img.blog.csdn.net/20160628122106860">
+<meta property="og:image" content="http://img.blog.csdn.net/20160628123802758">
+<meta property="og:image" content="http://img.blog.csdn.net/20160708144434618">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz/1LZpMyfLwbLeNNqOicbrKKXyicpGP0sWrUaic75NtcxHR9sA0gia2bS2n1Y9fia7hgnWSjqO36C2PJ7brGE2AZHjicog/0?wx_fmt=png">
+<meta property="og:updated_time" content="2016-07-08T07:12:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跨平台开发之React Native初体验">
+<meta name="twitter:description" content="ReactNative，你必须知道的事实，它越来越火！作为移动开发者，唯一不能拒绝的就是持续性学习。React Native整套解决方案，FaceBook对它的愿景是“Learn Once，Write AnyWhere”，学习成本只有一次，却完成了多种开发角色的统一，UI统一，跨平台技术越来越666。let’s start！">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160616111653053">
+  
+    <link rel="alternative" href="/atom.xml" title="Android专栏-杜乾，Dusan&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic" style="backgroud-image:url("https://duqian291902259.github.io/img/dusan_head.png")">
+			<!-- 
+			<img lazy-src="/img/head_small.png" class="js-avatar">
+			 -->
+			<img src="/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+
+			<!-- <img src="https://duqian291902259.github.io/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;"> -->
+
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Dusan-杜乾</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Android Developer</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about/">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AIDL/" style="font-size: 10px;">AIDL</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-studio/" style="font-size: 10px;">Android studio</a> <a href="/tags/Android笔记/" style="font-size: 13.33px;">Android笔记</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Dusan/" style="font-size: 10px;">Dusan</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/IOS/" style="font-size: 10px;">IOS</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Jadx/" style="font-size: 10px;">Jadx</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/React-Native/" style="font-size: 10px;">React-Native</a> <a href="/tags/Retrofit/" style="font-size: 13.33px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/Weex/" style="font-size: 16.67px;">Weex</a> <a href="/tags/Xposed/" style="font-size: 13.33px;">Xposed</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/okHttp/" style="font-size: 10px;">okHttp</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/webrtc/" style="font-size: 10px;">webrtc</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/反编译/" style="font-size: 10px;">反编译</a> <a href="/tags/图片压缩/" style="font-size: 10px;">图片压缩</a> <a href="/tags/权限/" style="font-size: 10px;">权限</a> <a href="/tags/杜乾/" style="font-size: 10px;">杜乾</a> <a href="/tags/网络/" style="font-size: 13.33px;">网络</a> <a href="/tags/连麦/" style="font-size: 10px;">连麦</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/dzsw0117">杜乾的专栏</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.site/">我的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ximelly.com/">Ximelly的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.net.cn/">Dusan的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Dusan,Android Developer,I&#39;m concentrated on android，web &amp; native.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Dusan-杜乾</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/head_small.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Dusan-杜乾</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Android Developer</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about/">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-跨平台开发之React Native初体验" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/16/跨平台开发之React Native初体验/" class="article-date">
+  	<time datetime="2016-06-16T03:19:00.000Z" itemprop="datePublished">2016-06-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      跨平台开发之React Native初体验
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOS/">IOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-Native/">React-Native</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/React-Native/">React-Native</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ReactNative，你必须知道的事实，它越来越火！作为移动开发者，唯一不能拒绝的就是持续性学习。React Native整套解决方案，FaceBook对它的愿景是“Learn Once，Write AnyWhere”，学习成本只有一次，却完成了多种开发角色的统一，UI统一，跨平台技术越来越666。let’s start！<br><a id="more"></a><br><img src="http://img.blog.csdn.net/20160616111653053" alt=" React Native官方用例"></p>
+<h3 id="一，what’s-React-Native？"><a href="#一，what’s-React-Native？" class="headerlink" title="一，what’s React Native？"></a>一，what’s React Native？</h3><blockquote>
+<p>官方解说：React<br>Native使你能够在Javascript和React的基础上获得完全一致的开发体验，构建世界一流的原生APP。React<br>Native着力于提高多平台开发的开发效率 —— 仅需学习一次，编写任何平台。(Learn once, write<br>anywhere)，Facebook已经在多项产品中使用了React Native，并且将持续地投入建设React Native。</p>
+<h3 id="二，React-Native特色"><a href="#二，React-Native特色" class="headerlink" title="二，React Native特色"></a>二，React Native特色</h3><h4 id="1，原生组件"><a href="#1，原生组件" class="headerlink" title="1，原生组件"></a>1，原生组件</h4><p>使用React Native，你可以使用标准的平台组件，例如iOS的UITabBar或安卓的Drawer。</p>
+<h4 id="2，异步执行"><a href="#2，异步执行" class="headerlink" title="2，异步执行"></a>2，异步执行</h4><p>在Javascript代码和原生平台之间的所有操作都是异步执行的，并且原生模块还可以根据需要创建新的线程。</p>
+<h4 id="3，触摸事件处理"><a href="#3，触摸事件处理" class="headerlink" title="3，触摸事件处理"></a>3，触摸事件处理</h4><p>React Native实现了一个强大的触摸事件处理系统，可以在复杂的View层次关系下正确地处理触摸事件。</p>
+<h4 id="4，弹性盒-Flexbox-和样式"><a href="#4，弹性盒-Flexbox-和样式" class="headerlink" title="4，弹性盒(Flexbox)和样式"></a>4，弹性盒(Flexbox)和样式</h4><p>React Native从web中借鉴了Flexbox模型。。React Native还支持多种常见的web样式。</p>
+<h4 id="5，兼容通用标准"><a href="#5，兼容通用标准" class="headerlink" title="5，兼容通用标准"></a>5，兼容通用标准</h4><p>吸纳了web生态系统中的通用标准，并在必要的时候为这些API提供兼容层。</p>
+<h4 id="6，扩展性"><a href="#6，扩展性" class="headerlink" title="6，扩展性"></a>6，扩展性</h4><p>使用自定义的原生视图和模块来扩展React Native也非常容易。</p>
+<h4 id="7，创建Android-、IOS-View"><a href="#7，创建Android-、IOS-View" class="headerlink" title="7，创建Android 、IOS View"></a>7，创建Android 、IOS View</h4><p>创建自定义的Android View，自定义iOS View。最后用一个Javascript文件连接并进行包装。</p>
+</blockquote>
+<h3 id="三，环境搭建参照官方步骤，一步步来。"><a href="#三，环境搭建参照官方步骤，一步步来。" class="headerlink" title="三，环境搭建参照官方步骤，一步步来。"></a>三，环境搭建参照官方步骤，一步步来。</h3><p>建议使用macOS  - 本向导假设您的操作系统是macOS。<br>推荐使用Homebrew 来安装Node.js，Watchman和Flow。<br>如果不知道Homebrew如何安装，可以参照我的博文：<a href="http://blog.csdn.net/dzsw0117/article/details/51260020" target="_blank" rel="external">Mac下安装常用开发工具</a></p>
+<h4 id="1，安装Node-js-4-0或更高版本："><a href="#1，安装Node-js-4-0或更高版本：" class="headerlink" title="1，安装Node.js 4.0或更高版本："></a>1，安装Node.js 4.0或更高版本：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">直接使用brew install node安装即可</div></pre></td></tr></table></figure>
+<p>如果安装 nvm，运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nvm install node &amp;&amp; nvm alias default node</div></pre></td></tr></table></figure></p>
+<p>这将会默认安装最新版本的Node.js并且设置好命令行的环境变量，这样你可以输入node命令来启动Node.js环境。nvm使你可以同时安装多个版本的Node.js，并且在这些版本之间轻松切换。</p>
+<h4 id="2，推荐安装watchman，否则你可能会遇到一个Node-js监视文件系统的BUG。"><a href="#2，推荐安装watchman，否则你可能会遇到一个Node-js监视文件系统的BUG。" class="headerlink" title="2，推荐安装watchman，否则你可能会遇到一个Node.js监视文件系统的BUG。"></a>2，推荐安装watchman，否则你可能会遇到一个Node.js监视文件系统的BUG。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在终端命令行中输入：brew install watchman，</div></pre></td></tr></table></figure>
+<h4 id="3，使用flow来为js代码加上类型检查"><a href="#3，使用flow来为js代码加上类型检查" class="headerlink" title="3，使用flow来为js代码加上类型检查"></a>3，使用flow来为js代码加上类型检查</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在终端命令行中输入：brew install flow</div></pre></td></tr></table></figure>
+<h4 id="4，安装ReactNative步骤。"><a href="#4，安装ReactNative步骤。" class="headerlink" title="4，安装ReactNative步骤。"></a>4，安装ReactNative步骤。</h4><p>详见：<a href="http://reactnative.cn/docs/0.27/getting-started.html#content" target="_blank" rel="external">官方安装指导</a><br>安装过程可能会遇到一些坑。以下是我的踩坑过程。比如文件夹权限问题，解决办法：提升权限 sudo chmod a+r path。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">brew install node</div><div class="line"></div><div class="line">npm config set registry </div><div class="line">https://registry.npm.taobao.org --global</div><div class="line"></div><div class="line">npm config set disturl https://npm.taobao.org/dist --global</div><div class="line"></div><div class="line">npm install -g react-native-cli</div></pre></td></tr></table></figure></p>
+<h3 id="四，编译ReactNative源码"><a href="#四，编译ReactNative源码" class="headerlink" title="四，编译ReactNative源码"></a>四，编译ReactNative源码</h3><p>源码下载，ReactNative仓库：<br><a href="https://github.com/facebook/react-native/" target="_blank" rel="external">https://github.com/facebook/react-native/</a><br>ReactNative根目录下没有local.properties文件，复制一份，改成自己的dir：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ndk.dir=/Users/duqian/Library/Android/sdk/ndk-bundle</div><div class="line">sdk.dir=/Users/duqian/Library/Android/sdk</div></pre></td></tr></table></figure></p>
+<h4 id="如何运行官方demo项目？UIExploer"><a href="#如何运行官方demo项目？UIExploer" class="headerlink" title="如何运行官方demo项目？UIExploer"></a>如何运行官方demo项目？UIExploer</h4><ul>
+<li>1，先确保你已安装好了React Native 所需的依赖环境</li>
+<li>2，在根目录下执行 npm install</li>
+<li>3，再执行 npm start</li>
+<li>4，如果是android，用Android Studio打开之前，将gradle里面的版本改为本地已经有的，减少下载依赖库的麻烦，然后直接运行，就可以。<br>如果是IOS，在Xcode中点击run 运行 或者按 command + R。<br><img src="http://img.blog.csdn.net/20160628123538148" alt="rn for ios"><h3 id="五，编译并运行AwesomeProject"><a href="#五，编译并运行AwesomeProject" class="headerlink" title="五，编译并运行AwesomeProject"></a>五，编译并运行AwesomeProject</h3>简单暴力地新建一个项目，就是init一个Awesome（令人敬畏的，哈哈）项目。先进入一个文件目录，然后react-native init AwesomeProject就可以了。之后运行相关命令编译安装。init初始化一个rn项目，不要用sudo，否则整个项目的读写都需要管理员权限。如果有文件夹权限问题，解决办法：提升权限 sudo chmod a+r path。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#cd path/to/your project</div><div class="line">DuQian-MBP:~ duqian$ sudo react-native init AwesomeProject</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>eg，创建在/Users/duqian/AwesomeProject下。</p>
+<h4 id="运行IOS，To-run-your-app-on-iOS"><a href="#运行IOS，To-run-your-app-on-iOS" class="headerlink" title="运行IOS，To run your app on iOS:"></a>运行IOS，To run your app on iOS:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /Users/duqian/AwesomeProject</div><div class="line"> react-native run-ios</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160628123651226" alt="AwesomeProject for ios"></p>
+<h4 id="运行Android，-To-run-your-app-on-Android"><a href="#运行Android，-To-run-your-app-on-Android" class="headerlink" title="运行Android， To run your app on Android:"></a>运行Android， To run your app on Android:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /Users/duqian/AwesomeProject</div><div class="line">  react-native run-android</div></pre></td></tr></table></figure>
+<p>这期间可能报各种错误，稍安勿躁，要不就是缺少依赖，gradle，插件什么的，一一下载补全就好了，BUILD SUCCESSFUL也是挺折腾的。这个是很简单的demo，调通了就是这样的：<br><img src="http://img.blog.csdn.net/20160628121828582" alt="android模拟器运行rn demo"><br>也可以用IDE打开工程，运行效果更加。</p>
+<h3 id="六，真机测试"><a href="#六，真机测试" class="headerlink" title="六，真机测试"></a>六，真机测试</h3><p>真机调试其实挺简单，首先用USB线将手机与电脑连接，并确保手机的usb调试选项打开，此时在项目根目录下运行：react-native run-android，即可在手机上进行调试。只要晃动手机，即可打开开发者菜单。<br>如果需要通过Wifi连接开发服务器，调试时很常见会遇到“Unable to download JS bundle”的错误，这时的解决办法是：<br>首先确保手机和电脑在同一wifi环境下<br>在程序主界面，晃动手机，点击dev settings<br>点击最后一项：Debug server host for device<br>在其中设置电脑的IP和端口，比如 192.168.100.66:8081，然后重新加载JS就可以。<br><img src="http://img.blog.csdn.net/20160628122106860" alt="ReactNative开发者工具"></p>
+<h3 id="七，node服务开启"><a href="#七，node服务开启" class="headerlink" title="七，node服务开启"></a>七，node服务开启</h3><p>运行成功后，服务不能关闭，否则无法渲染页面。app也运行不了demo。<br><img src="http://img.blog.csdn.net/20160628123802758" alt="这里写图片描述"></p>
+<h5 id="RN，让开发者惊喜万分，跨平台，方便拓展，让前端开发者来抢Native开发者的饭碗，当然Native也不是吃素的，学起来也挺有乐趣嘛。rn也有缺点，并非无所不能，比如android／ios的组件有时要单独写，初始的apk有点大，还有不少bug等。"><a href="#RN，让开发者惊喜万分，跨平台，方便拓展，让前端开发者来抢Native开发者的饭碗，当然Native也不是吃素的，学起来也挺有乐趣嘛。rn也有缺点，并非无所不能，比如android／ios的组件有时要单独写，初始的apk有点大，还有不少bug等。" class="headerlink" title="RN，让开发者惊喜万分，跨平台，方便拓展，让前端开发者来抢Native开发者的饭碗，当然Native也不是吃素的，学起来也挺有乐趣嘛。rn也有缺点，并非无所不能，比如android／ios的组件有时要单独写，初始的apk有点大，还有不少bug等。"></a>RN，让开发者惊喜万分，跨平台，方便拓展，让前端开发者来抢Native开发者的饭碗，当然Native也不是吃素的，学起来也挺有乐趣嘛。rn也有缺点，并非无所不能，比如android／ios的组件有时要单独写，初始的apk有点大，还有不少bug等。</h5><p>本文浅显，粗略介绍。深入RN，择日待续。。。<br>可点击下方阅读原文，进入原文链接：<br><a href="http://blog.csdn.net/dzsw0117/article/details/51690142" target="_blank" rel="external">http://blog.csdn.net/dzsw0117/article/details/51690142</a></p>
+<p>个人网站：<a href="http://duqian.site">http://duqian.site</a></p>
+<blockquote>
+<p>欢迎交流，Dusan，Q-291902259，公众号：OpenDeveloper，杜乾。</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20160708144434618" alt="我的公众号：OpenDeveloper"><br><img src="https://mmbiz.qlogo.cn/mmbiz/1LZpMyfLwbLeNNqOicbrKKXyicpGP0sWrUaic75NtcxHR9sA0gia2bS2n1Y9fia7hgnWSjqO36C2PJ7brGE2AZHjicog/0?wx_fmt=png" alt="帅帅的我"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/28/Weex开发笔记(一)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Weex开发笔记(一)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/07/Weex开源内测之初体验与未来展望/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Weex开源内测之初体验与未来展望</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="跨平台开发之React Native初体验" data-title="跨平台开发之React Native初体验" data-url="http://duqian.site/2016/06/16/跨平台开发之React Native初体验/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Dusan-杜乾
+    	</div>
+      	<div class="footer-right">
+      		做一个有思想的Open Developer <a href="http://duqian.net.cn" target="_blank">duqian.net.cn</a> 
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?20e4e8625728d88901f9496e026e21c0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  <!-- Google Analytics -->
+<!-- <script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'baidu', 'auto');
+ga('send', 'pageview');
+
+</script> -->
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Android Studio之混淆配置（Proguard文件解析） | Android专栏-杜乾，Dusan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为了防止自己的APP被轻易反编译，我们需要对APK进行混淆，或者特殊加密处理。可以用“爱加密“提供的加密服务，反编译后只能看到几行代码和.so的库文件。本文说说android 如何配置混淆。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Studio之混淆配置（Proguard文件解析）">
+<meta property="og:url" content="http://duqian.site/2016/09/26/Android Studio之混淆配置（Proguard文件解析）/index.html">
+<meta property="og:site_name" content="Android专栏-杜乾，Dusan's blog">
+<meta property="og:description" content="为了防止自己的APP被轻易反编译，我们需要对APK进行混淆，或者特殊加密处理。可以用“爱加密“提供的加密服务，反编译后只能看到几行代码和.so的库文件。本文说说android 如何配置混淆。">
+<meta property="og:image" content="http://img.blog.csdn.net/20160519174213428">
+<meta property="og:image" content="http://img.blog.csdn.net/20160519174310037">
+<meta property="og:updated_time" content="2017-03-17T10:04:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Studio之混淆配置（Proguard文件解析）">
+<meta name="twitter:description" content="为了防止自己的APP被轻易反编译，我们需要对APK进行混淆，或者特殊加密处理。可以用“爱加密“提供的加密服务，反编译后只能看到几行代码和.so的库文件。本文说说android 如何配置混淆。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160519174213428">
+  
+    <link rel="alternative" href="/atom.xml" title="Android专栏-杜乾，Dusan&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic" style="backgroud-image:url("https://duqian291902259.github.io/img/dusan_head.png")">
+			<!-- 
+			<img lazy-src="/img/head_small.png" class="js-avatar">
+			 -->
+			<img src="/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+
+			<!-- <img src="https://duqian291902259.github.io/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;"> -->
+
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Dusan-杜乾</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Android Developer</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about/">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AIDL/" style="font-size: 10px;">AIDL</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-studio/" style="font-size: 10px;">Android studio</a> <a href="/tags/Android笔记/" style="font-size: 13.33px;">Android笔记</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Dusan/" style="font-size: 10px;">Dusan</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/IOS/" style="font-size: 10px;">IOS</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Jadx/" style="font-size: 10px;">Jadx</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/React-Native/" style="font-size: 10px;">React-Native</a> <a href="/tags/Retrofit/" style="font-size: 13.33px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/Weex/" style="font-size: 16.67px;">Weex</a> <a href="/tags/Xposed/" style="font-size: 13.33px;">Xposed</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/okHttp/" style="font-size: 10px;">okHttp</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/webrtc/" style="font-size: 10px;">webrtc</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/反编译/" style="font-size: 10px;">反编译</a> <a href="/tags/图片压缩/" style="font-size: 10px;">图片压缩</a> <a href="/tags/权限/" style="font-size: 10px;">权限</a> <a href="/tags/杜乾/" style="font-size: 10px;">杜乾</a> <a href="/tags/网络/" style="font-size: 13.33px;">网络</a> <a href="/tags/连麦/" style="font-size: 10px;">连麦</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/dzsw0117">杜乾的专栏</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.site/">我的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ximelly.com/">Ximelly的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.net.cn/">Dusan的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Dusan,Android Developer,I&#39;m concentrated on android，web &amp; native.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Dusan-杜乾</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/head_small.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Dusan-杜乾</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Android Developer</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about/">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Android Studio之混淆配置（Proguard文件解析）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/26/Android Studio之混淆配置（Proguard文件解析）/" class="article-date">
+  	<time datetime="2016-09-26T05:55:34.000Z" itemprop="datePublished">2016-09-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android Studio之混淆配置（Proguard文件解析）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Proguard/">Proguard</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了防止自己的APP被轻易反编译，我们需要对APK进行混淆，或者特殊加密处理。可以用“爱加密“提供的加密服务，反编译后只能看到几行代码和.so的库文件。本文说说android 如何配置混淆。</p>
+<a id="more"></a>
+<p>关于如何反编译android apk，见我另外一篇文章：<a href="http://blog.csdn.net/dzsw0117/article/details/51429683" target="_blank" rel="external">win/mac下反编译Android安装包－APK文件，http://blog.csdn.net/dzsw0117/article/details/51429683</a></p>
+<h3 id="一，何为混淆？"><a href="#一，何为混淆？" class="headerlink" title="一，何为混淆？"></a>一，何为混淆？</h3><p>简单的说，就是将原本正常的项目文件，对其类，方法，字段，重新命名,a,b,c,d,e,f…之类的字母，达到混淆代码的目的，这样反编译出来，结构乱糟糟的，看了也头大。</p>
+<h3 id="二，官方默认的混淆配置"><a href="#二，官方默认的混淆配置" class="headerlink" title="二，官方默认的混淆配置"></a>二，官方默认的混淆配置</h3><p>先看看官方的proguard-android.txt文件，位于<android sdk="">/tools/proguard目录下，不知道怎么写，可以当成模板，复制一份出来到自己的工程，改成自己项目所需的混淆配置。内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"># This is a configuration file for ProGuard.</div><div class="line"># http://proguard.sourceforge.net/index.html#manual/usage.html</div><div class="line"></div><div class="line">-dontusemixedcaseclassnames</div><div class="line">-dontskipnonpubliclibraryclasses</div><div class="line">-verbose</div><div class="line"></div><div class="line"># Optimization is turned off by default. Dex does not like code run</div><div class="line"># through the ProGuard optimize and preverify steps (and performs some</div><div class="line"># of these optimizations on its own).</div><div class="line">-dontoptimize</div><div class="line">-dontpreverify</div><div class="line"># Note that if you want to enable optimization, you cannot just</div><div class="line"># include optimization flags in your own project configuration file;</div><div class="line"># instead you will need to point to the</div><div class="line"># &quot;proguard-android-optimize.txt&quot; file instead of this one from your</div><div class="line"># project.properties file.</div><div class="line"></div><div class="line">-keepattributes *Annotation*</div><div class="line">-keep public class com.google.vending.licensing.ILicensingService</div><div class="line">-keep public class com.android.vending.licensing.ILicensingService</div><div class="line"></div><div class="line"># For native methods, see http://proguard.sourceforge.net/manual/examples.html#native</div><div class="line">-keepclasseswithmembernames class * &#123;</div><div class="line">    native &lt;methods&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># keep setters in Views so that animations can still work.</div><div class="line"># see http://proguard.sourceforge.net/manual/examples.html#beans</div><div class="line">-keepclassmembers public class * extends android.view.View &#123;</div><div class="line">   void set*(***);</div><div class="line">   *** get*();</div><div class="line">&#125;</div><div class="line"></div><div class="line"># We want to keep methods in Activity that could be used in the XML attribute onClick</div><div class="line">-keepclassmembers class * extends android.app.Activity &#123;</div><div class="line">   public void *(android.view.View);</div><div class="line">&#125;</div><div class="line"></div><div class="line"># For enumeration classes, see http://proguard.sourceforge.net/manual/examples.html#enumerations</div><div class="line">-keepclassmembers enum * &#123;</div><div class="line">    public static **[] values();</div><div class="line">    public static ** valueOf(java.lang.String);</div><div class="line">&#125;</div><div class="line"></div><div class="line">-keepclassmembers class * implements android.os.Parcelable &#123;</div><div class="line">  public static final android.os.Parcelable$Creator CREATOR;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-keepclassmembers class **.R$* &#123;</div><div class="line">    public static &lt;fields&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># The support library contains references to newer platform versions.</div><div class="line"># Don&apos;t warn about those in case this app is linking against an older</div><div class="line"># platform version.  We know about them, and they are safe.</div><div class="line">-dontwarn android.support.**</div><div class="line"></div><div class="line"># Understand the @Keep support annotation.</div><div class="line">-keep class android.support.annotation.Keep</div><div class="line"></div><div class="line">-keep @android.support.annotation.Keep class * &#123;*;&#125;</div><div class="line"></div><div class="line">-keepclasseswithmembers class * &#123;</div><div class="line">    @android.support.annotation.Keep &lt;methods&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-keepclasseswithmembers class * &#123;</div><div class="line">    @android.support.annotation.Keep &lt;fields&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-keepclasseswithmembers class * &#123;</div><div class="line">    @android.support.annotation.Keep &lt;init&gt;(...);</div><div class="line">&#125;</div></pre></td></tr></table></figure></android></p>
+<p>以上英文好好琢磨下，这个混淆默认采取一些通用的规则，view，activity，Parcelable，注解，R文件，枚举这类的东西都不会混淆，我们也不能混淆这些，否则release版本会报错。</p>
+<h3 id="三，Android-Studio开启混淆配置"><a href="#三，Android-Studio开启混淆配置" class="headerlink" title="三，Android Studio开启混淆配置"></a>三，Android Studio开启混淆配置</h3><p>很简单，只要设置minifyEnabled为true即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">buildTypes &#123;</div><div class="line">       release &#123;</div><div class="line">           minifyEnabled true//true开启混淆配置，false关闭</div><div class="line">           proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</div><div class="line">           signingConfig signingConfigs.duqian_android_keystore</div><div class="line">       &#125;</div><div class="line">      debug&#123;//省略&#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="四，Android混淆的通用规则"><a href="#四，Android混淆的通用规则" class="headerlink" title="四，Android混淆的通用规则"></a>四，Android混淆的通用规则</h3><p>debug调试的apk是没有混淆的，所以无论你怎么反编译，都看到的是源码，你要检验release包是否混淆。</p>
+<h4 id="1，系统混淆配置"><a href="#1，系统混淆配置" class="headerlink" title="1，系统混淆配置"></a>1，系统混淆配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-dontusemixedcaseclassnames          #混淆时不使用大小写混合类名</div><div class="line">-dontskipnonpubliclibraryclasses     #不跳过library中的非public的类</div><div class="line">-verbose                             #打印混淆的详细信息</div><div class="line">-dontoptimize                        #不进行优化，建议使用此选项，</div><div class="line">-dontpreverify                       #不进行预校验,Android不需要,可加快混淆速度。</div><div class="line">-ignorewarnings                      #忽略警告</div><div class="line">#-optimizationpasses 5               #指定代码的压缩级别</div></pre></td></tr></table></figure>
+<h4 id="2，常用的一些混淆配置"><a href="#2，常用的一些混淆配置" class="headerlink" title="2，常用的一些混淆配置"></a>2，常用的一些混淆配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">-keepattributes Signature #范型</div><div class="line">#native方法不混淆</div><div class="line">-keepclasseswithmembernames class * &#123;</div><div class="line">    native &lt;methods&gt;;</div><div class="line">&#125;</div><div class="line">#v4包不混淆</div><div class="line">-keep class android.support.v4.app.** &#123; *; &#125;</div><div class="line">-keep interface android.support.v4.app.** &#123; *; &#125;</div><div class="line">#Gson混淆配置</div><div class="line">-keep class sun.misc.Unsafe &#123; *; &#125;</div><div class="line">-keep class com.idea.fifaalarmclock.entity.***</div><div class="line">-keep class com.google.gson.** &#123; *; &#125;</div><div class="line">#JavaBean</div><div class="line">-keepclassmembers public class cn.net.duqian.bean.** &#123;</div><div class="line">   void set*(***);</div><div class="line">   *** get*();</div><div class="line">&#125;</div><div class="line">-keep class com.xx.duqian_cloud.JavaScriptInterface &#123; *; &#125;#webview js</div><div class="line"></div><div class="line">#忽略 libiary 混淆</div><div class="line">-keep class io.vov.vitamio.** &#123; *; &#125;</div><div class="line"></div><div class="line">#butterknife不混淆</div><div class="line">-keep class butterknife.** &#123; *; &#125;</div><div class="line">-dontwarn butterknife.internal.**</div><div class="line">-keep class **$$ViewBinder &#123; *; &#125;</div><div class="line">-keepclasseswithmembernames class * &#123;</div><div class="line">    @butterknife.* &lt;fields&gt;;</div><div class="line">&#125;</div><div class="line">-keepclasseswithmembernames class * &#123;</div><div class="line">    @butterknife.* &lt;methods&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第三方框架不混淆，也要看具体情况，不是所有的lib都不能混淆。用了反射的肯定不能混淆。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">-keepclassmembers class * &#123;</div><div class="line">   public &lt;init&gt; (org.json.JSONObject);</div><div class="line">&#125;</div><div class="line">#okhttp</div><div class="line">-dontwarn okhttp3.**</div><div class="line">-keep class okhttp3.**&#123;*;&#125;</div><div class="line">-keep interface okhttp3.**&#123;*;&#125;</div><div class="line"></div><div class="line">#okio</div><div class="line">-dontwarn okio.**</div><div class="line">-keep class okio.**&#123;*;&#125;</div><div class="line">-keep interface okio.**&#123;*;&#125;</div><div class="line"></div><div class="line">-dontwarn retrofit2.**</div><div class="line">-keep class retrofit2.** &#123; *; &#125;</div><div class="line">-keepattributes Signature</div><div class="line">-keepattributes Exceptions</div><div class="line"></div><div class="line">-dontwarn rx.**</div><div class="line">-keep class rx.**&#123;*;&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="五，Android混淆的方法和通配符对照表"><a href="#五，Android混淆的方法和通配符对照表" class="headerlink" title="五，Android混淆的方法和通配符对照表"></a>五，Android混淆的方法和通配符对照表</h3><p>引用的图片，未必准确：<br><img src="http://img.blog.csdn.net/20160519174213428" alt="混淆的常用keep方法"><br><img src="http://img.blog.csdn.net/20160519174310037" alt="混淆通配符"></p>
+<h3 id="六，Android混淆的总结"><a href="#六，Android混淆的总结" class="headerlink" title="六，Android混淆的总结"></a>六，Android混淆的总结</h3><ol>
+<li>Java的反射，为什么不能混淆呢？因为代码混淆，类名、方法名、属性名都改变了，而反射它还是按照原来的名字去反射，结果只射出一个程序崩溃，Crash，一脸的懵逼。</li>
+<li>注解用了反射，所以不能混淆。 不混淆任何包含native方法的类的类名以及native方法名，否则找不到本地方法。</li>
+<li>Activity更不能混淆，因为AndroidManifest.xml文件中是完整的名字，混淆后怎么找？</li>
+<li>自定义view也是带了包名写在xml布局中，给我换成a，怎么破？ R文件混淆了，id没了，界面崩溃那时自然咯。</li>
+<li>本文没有指定混淆某个类中的某个方法。</li>
+<li>如何反编译apk，见我另外一篇文章：<a href="http://blog.csdn.net/dzsw0117/article/details/51429683" target="_blank" rel="external">win/mac下反编译Android安装包－APK文件</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">欢迎交流，Dusan，杜乾，291902259。</div></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/19/Mac下反编译Android安装包/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Mac下反编译Android安装包－APK文件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/24/Mac下修改Android Studio的默认JDK版本/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac下修改Android Studio的默认JDK版本</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android Studio之混淆配置（Proguard文件解析）" data-title="Android Studio之混淆配置（Proguard文件解析）" data-url="http://duqian.site/2016/09/26/Android Studio之混淆配置（Proguard文件解析）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Dusan-杜乾
+    	</div>
+      	<div class="footer-right">
+      		做一个有思想的Open Developer <a href="http://duqian.net.cn" target="_blank">duqian.net.cn</a> 
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?20e4e8625728d88901f9496e026e21c0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  <!-- Google Analytics -->
+<!-- <script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'baidu', 'auto');
+ga('send', 'pageview');
+
+</script> -->
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>build.gradle的常用配置 | Android专栏-杜乾，Dusan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1，project的下的gradle配置全当一个笔记，主要是project和modules的区配置，我们都比较清楚，gradle构建配置如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="build.gradle的常用配置">
+<meta property="og:url" content="http://duqian.site/2016/05/25/build.gradle的常用配置/index.html">
+<meta property="og:site_name" content="Android专栏-杜乾，Dusan's blog">
+<meta property="og:description" content="1，project的下的gradle配置全当一个笔记，主要是project和modules的区配置，我们都比较清楚，gradle构建配置如下：">
+<meta property="og:updated_time" content="2017-03-17T09:21:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="build.gradle的常用配置">
+<meta name="twitter:description" content="1，project的下的gradle配置全当一个笔记，主要是project和modules的区配置，我们都比较清楚，gradle构建配置如下：">
+  
+    <link rel="alternative" href="/atom.xml" title="Android专栏-杜乾，Dusan&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic" style="backgroud-image:url("https://duqian291902259.github.io/img/dusan_head.png")">
+			<!-- 
+			<img lazy-src="/img/head_small.png" class="js-avatar">
+			 -->
+			<img src="/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+
+			<!-- <img src="https://duqian291902259.github.io/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;"> -->
+
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Dusan-杜乾</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Android Developer</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about/">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AIDL/" style="font-size: 10px;">AIDL</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-studio/" style="font-size: 10px;">Android studio</a> <a href="/tags/Android笔记/" style="font-size: 13.33px;">Android笔记</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Dusan/" style="font-size: 10px;">Dusan</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/IOS/" style="font-size: 10px;">IOS</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Jadx/" style="font-size: 10px;">Jadx</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/React-Native/" style="font-size: 10px;">React-Native</a> <a href="/tags/Retrofit/" style="font-size: 13.33px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/Weex/" style="font-size: 16.67px;">Weex</a> <a href="/tags/Xposed/" style="font-size: 13.33px;">Xposed</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/okHttp/" style="font-size: 10px;">okHttp</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/webrtc/" style="font-size: 10px;">webrtc</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/反编译/" style="font-size: 10px;">反编译</a> <a href="/tags/图片压缩/" style="font-size: 10px;">图片压缩</a> <a href="/tags/权限/" style="font-size: 10px;">权限</a> <a href="/tags/杜乾/" style="font-size: 10px;">杜乾</a> <a href="/tags/网络/" style="font-size: 13.33px;">网络</a> <a href="/tags/连麦/" style="font-size: 10px;">连麦</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/dzsw0117">杜乾的专栏</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.site/">我的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ximelly.com/">Ximelly的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.net.cn/">Dusan的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Dusan,Android Developer,I&#39;m concentrated on android，web &amp; native.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Dusan-杜乾</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/head_small.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Dusan-杜乾</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Android Developer</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about/">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-build.gradle的常用配置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/25/build.gradle的常用配置/" class="article-date">
+  	<time datetime="2016-05-25T04:45:33.000Z" itemprop="datePublished">2016-05-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      build.gradle的常用配置
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android笔记/">Android笔记</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1，project的下的gradle配置"><a href="#1，project的下的gradle配置" class="headerlink" title="1，project的下的gradle配置"></a>1，project的下的gradle配置</h3><p>全当一个笔记，主要是project和modules的区配置，我们都比较清楚，gradle构建配置如下：<br><a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// Top-level build file where you can add configuration options common to all sub-projects/modules.</div><div class="line"></div><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">        //mavenCentral()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath &apos;com.android.tools.build:gradle:2.2.2&apos;</div><div class="line">        classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.8&apos; //注入框架必须增加这一句</div><div class="line">        //classpath &apos;org.greenrobot:greendao-gradle-plugin:3.2.0&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">allprojects &#123;//在配置中加入自定义的仓库</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">        maven &#123; url &quot;https://jitpack.io&quot; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task clean(type: Delete) &#123;</div><div class="line">    delete rootProject.buildDir</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2，module配置，app"><a href="#2，module配置，app" class="headerlink" title="2，module配置，app"></a>2，module配置，app</h3><p>配置签名，各种版本信息，sdk，混淆打包，依赖文件，第三方库等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;com.android.application&apos;</div><div class="line">apply plugin: &apos;com.neenbedankt.android-apt&apos;//依赖注入</div><div class="line">//apply plugin: &apos;org.greenrobot.greendao&apos;</div><div class="line">android &#123;</div><div class="line">    signingConfigs &#123;</div><div class="line">        oair_android_keystore &#123;</div><div class="line">            keyAlias &apos;oair_android&apos;</div><div class="line">            keyPassword KEY_PASSWORD</div><div class="line">            storeFile file(&apos;../../keystore/android.keystore&apos;)</div><div class="line">            storePassword KEYSTORE_PASSWORD//密码保存在gradle.properties中</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    compileSdkVersion 25</div><div class="line">    buildToolsVersion &quot;25.0.0&quot;//版本与你as的buildtool版本一致</div><div class="line"></div><div class="line">    defaultConfig &#123;</div><div class="line">        applicationId &quot;cn.net.duqian&quot;</div><div class="line">        minSdkVersion 11</div><div class="line">        targetSdkVersion 24</div><div class="line">        versionCode 1</div><div class="line">        versionName &quot;1.0.2&quot;</div><div class="line">        signingConfig signingConfigs.android_keystore</div><div class="line">        testInstrumentationRunner &apos;android.support.test.runner.AndroidJUnitRunner&apos;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    buildTypes &#123;</div><div class="line">        release &#123;</div><div class="line">            minifyEnabled true//打开混淆</div><div class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</div><div class="line">            shrinkResources true// 移除无用的resource文件</div><div class="line">            signingConfig signingConfigs.android_keystore</div><div class="line">        &#125;</div><div class="line">        debug &#123;</div><div class="line">            signingConfig signingConfigs.android_keystore</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">   //多个版本的打包配置</div><div class="line">    productFlavors &#123;</div><div class="line">        Version1&#123;</div><div class="line">            applicationId &quot;package name1&quot;</div><div class="line">            manifestPlaceholders = [GAO_DE_KEY: &quot;your gaode key1&quot;, UMENG_KEY: &quot;your umeng key1&quot;]</div><div class="line">        &#125;</div><div class="line">        Version2 &#123;</div><div class="line">            applicationId &quot;package name2&quot;</div><div class="line">            manifestPlaceholders = [GAO_DE_KEY: &quot;your gaode key2&quot;, UMENG_KEY: &quot;your umeng key2&quot;]</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">   /* lintOptions &#123;</div><div class="line">        disable &apos;InvalidPackage&apos;</div><div class="line">    &#125;</div><div class="line">    packagingOptions &#123;</div><div class="line">        exclude &apos;META-INF/services/javax.annotation.processing.Processor&apos;</div><div class="line">    &#125;*/</div><div class="line"></div><div class="line">    /*greendao&#123;</div><div class="line">        schemaVersion 1000 //数据库版本号</div><div class="line">        daoPackage &apos;com.oair.ssy.model.db&apos; //设置DaoMaster、DaoSession、Dao包名</div><div class="line">        targetGenDir &apos;src/main/java&apos;//设置DaoMaster、DaoSession、Dao目录</div><div class="line">    &#125;*/</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">    compile fileTree(include: [&apos;*.jar&apos;], dir: &apos;libs&apos;)</div><div class="line">    compile project(&apos;:vitamio4.2.6&apos;)</div><div class="line">    testCompile &apos;junit:junit:4.12&apos;</div><div class="line">    //testCompile &apos;org.mockito:mockito-core:2.0.99-beta&apos;</div><div class="line">    //testCompile &apos;org.robolectric:robolectric:3.1.2&apos;</div><div class="line">   </div><div class="line">    compile &apos;com.android.support:support-v4:25.0.1&apos;</div><div class="line">    compile &apos;com.android.support:appcompat-v7:25.0.1&apos;</div><div class="line">    compile &apos;com.android.support:cardview-v7:25.0.1&apos;</div><div class="line">    compile &apos;com.android.support:recyclerview-v7:25.0.1&apos;</div><div class="line">    compile &apos;com.github.CymChad:BaseRecyclerViewAdapterHelper:2.1.3&apos;</div><div class="line">    compile &apos;com.jakewharton:butterknife:8.4.0&apos;</div><div class="line">    apt &apos;com.jakewharton:butterknife-compiler:8.4.0&apos;</div><div class="line">    compile &apos;com.squareup.retrofit2:retrofit:2.1.0&apos;</div><div class="line">    compile &apos;com.squareup.retrofit2:retrofit-adapters:2.1.0&apos;</div><div class="line">    compile &apos;com.squareup.retrofit2:retrofit-converters:2.1.0&apos;</div><div class="line">    compile &apos;com.squareup.retrofit2:converter-gson:2.1.0&apos;</div><div class="line">    /*compile &apos;com.squareup.retrofit2:adapter-rxjava:2.1.0&apos;</div><div class="line">    compile &apos;io.reactivex:rxjava:1.1.10&apos;</div><div class="line">    compile &apos;io.reactivex:rxandroid:1.2.1&apos;*/</div><div class="line">    compile &apos;com.squareup.okhttp3:okhttp:3.4.1&apos;</div><div class="line">    compile &apos;com.squareup.okio:okio-parent:1.10.0&apos;</div><div class="line">    compile &apos;org.greenrobot:eventbus:3.0.0&apos;</div><div class="line">    compile &apos;com.google.dagger:dagger:2.7&apos;</div><div class="line">    provided &apos;com.google.dagger:dagger-compiler:2.7&apos;</div><div class="line">    provided &apos;org.glassfish:javax.annotation:10.0-b28&apos;</div><div class="line">    compile &apos;com.squareup.leakcanary:leakcanary-android:1.4&apos;</div><div class="line">    compile &apos;com.umeng.analytics:analytics:5.6.4&apos;</div><div class="line">    compile &apos;com.github.bumptech.glide:glide:3.7.0&apos;</div><div class="line">    compile &apos;com.github.chrisbanes:PhotoView:1.3.0&apos;</div><div class="line">    compile &apos;com.squareup.picasso:picasso:2.5.2&apos;</div><div class="line"></div><div class="line">    compile &apos;com.github.barteksc:android-pdf-viewer:2.3.0&apos;</div><div class="line">    //compile &apos;org.greenrobot:greendao:3.2.0&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h3>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/07/Weex开源内测之初体验与未来展望/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Weex开源内测之初体验与未来展望
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/24/Android检测内存泄漏之leakcanary/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android检测内存泄漏之leakcanary</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="build.gradle的常用配置" data-title="build.gradle的常用配置" data-url="http://duqian.site/2016/05/25/build.gradle的常用配置/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Dusan-杜乾
+    	</div>
+      	<div class="footer-right">
+      		做一个有思想的Open Developer <a href="http://duqian.net.cn" target="_blank">duqian.net.cn</a> 
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?20e4e8625728d88901f9496e026e21c0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  <!-- Google Analytics -->
+<!-- <script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'baidu', 'auto');
+ga('send', 'pageview');
+
+</script> -->
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

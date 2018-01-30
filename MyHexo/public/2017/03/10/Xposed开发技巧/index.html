@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Xposed开发技巧 | Android专栏-杜乾，Dusan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Xposed，大名鼎鼎得Xposed，是Android平台上最负盛名的一个框架。在这个框架下，我们可以加载很多插件App，这些插件App可以直接或间接操纵系统层面的东西，比如操纵一些本来只对系统厂商才open的功能（实际上是因为Android系统很多API是不公开的，而第三方APP又没有权限）。有了Xposed后，理论上我们的插件APP可以hook到系统任意一个Java进程（zygote，syst">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xposed开发技巧">
+<meta property="og:url" content="http://duqian.site/2017/03/10/Xposed开发技巧/index.html">
+<meta property="og:site_name" content="Android专栏-杜乾，Dusan's blog">
+<meta property="og:description" content="Xposed，大名鼎鼎得Xposed，是Android平台上最负盛名的一个框架。在这个框架下，我们可以加载很多插件App，这些插件App可以直接或间接操纵系统层面的东西，比如操纵一些本来只对系统厂商才open的功能（实际上是因为Android系统很多API是不公开的，而第三方APP又没有权限）。有了Xposed后，理论上我们的插件APP可以hook到系统任意一个Java进程（zygote，syst">
+<meta property="og:updated_time" content="2017-03-17T10:22:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Xposed开发技巧">
+<meta name="twitter:description" content="Xposed，大名鼎鼎得Xposed，是Android平台上最负盛名的一个框架。在这个框架下，我们可以加载很多插件App，这些插件App可以直接或间接操纵系统层面的东西，比如操纵一些本来只对系统厂商才open的功能（实际上是因为Android系统很多API是不公开的，而第三方APP又没有权限）。有了Xposed后，理论上我们的插件APP可以hook到系统任意一个Java进程（zygote，syst">
+  
+    <link rel="alternative" href="/atom.xml" title="Android专栏-杜乾，Dusan&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic" style="backgroud-image:url("https://duqian291902259.github.io/img/dusan_head.png")">
+			<!-- 
+			<img lazy-src="/img/head_small.png" class="js-avatar">
+			 -->
+			<img src="/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+
+			<!-- <img src="https://duqian291902259.github.io/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;"> -->
+
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Dusan-杜乾</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Android Developer</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about/">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AIDL/" style="font-size: 10px;">AIDL</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-studio/" style="font-size: 10px;">Android studio</a> <a href="/tags/Android笔记/" style="font-size: 13.33px;">Android笔记</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Dusan/" style="font-size: 10px;">Dusan</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/IOS/" style="font-size: 10px;">IOS</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Jadx/" style="font-size: 10px;">Jadx</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/React-Native/" style="font-size: 10px;">React-Native</a> <a href="/tags/Retrofit/" style="font-size: 13.33px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/Weex/" style="font-size: 16.67px;">Weex</a> <a href="/tags/Xposed/" style="font-size: 13.33px;">Xposed</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/okHttp/" style="font-size: 10px;">okHttp</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/webrtc/" style="font-size: 10px;">webrtc</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/反编译/" style="font-size: 10px;">反编译</a> <a href="/tags/图片压缩/" style="font-size: 10px;">图片压缩</a> <a href="/tags/权限/" style="font-size: 10px;">权限</a> <a href="/tags/杜乾/" style="font-size: 10px;">杜乾</a> <a href="/tags/网络/" style="font-size: 13.33px;">网络</a> <a href="/tags/连麦/" style="font-size: 10px;">连麦</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/dzsw0117">杜乾的专栏</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.site/">我的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ximelly.com/">Ximelly的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.net.cn/">Dusan的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Dusan,Android Developer,I&#39;m concentrated on android，web &amp; native.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Dusan-杜乾</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/head_small.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Dusan-杜乾</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Android Developer</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about/">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Xposed开发技巧" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/10/Xposed开发技巧/" class="article-date">
+  	<time datetime="2017-03-10T14:55:00.000Z" itemprop="datePublished">2017-03-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Xposed开发技巧
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xposed/">Xposed</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Xposed/">Xposed</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Xposed，大名鼎鼎得Xposed，是Android平台上最负盛名的一个框架。在这个框架下，我们可以加载很多插件App，这些插件App可以直接或间接操纵系统层面的东西，比如操纵一些本来只对系统厂商才open的功能（实际上是因为Android系统很多API是不公开的，而第三方APP又没有权限）。有了Xposed后，理论上我们的插件APP可以hook到系统任意一个Java进程（zygote，systemserver，systemui好不啦！）。</p>
+<a id="more"></a>
+<p>lpparam.classLoader hook</p>
+<ol>
+<li>静态field变量</li>
+</ol>
+<p>静态field变量sMoney的值的修改和获取，可以直接使用xposed提供的XposedHelpers类相关功能函数。具体操作可以类比以下示例代码片段：</p>
+<pre><code>Class clazz =XposedHelpers.findClass(&quot;com.example.inner_class_demo.demo&quot;,lpparam.classLoader);
+
+XposedHelpers.setStaticObjectField(clazz,&quot;sMoney&quot;,110);
+
+Field sMoney =  clazz.getDeclaredField(&quot;sMoney&quot;);
+
+sMoney.setAccessible(true);
+
+System.out.println(sMoney.get(null));
+</code></pre><ol>
+<li>隐藏函数hidden_fun</li>
+</ol>
+<p>主动调用隐藏函数hidden_fun（这一类函数是指触发条件比较苛刻的函数，但是我们又需要了解它的输入、输出的大致关系），需要通过clazz来新建实例，最后将此实例与函数名组装成XposedHelpers.callMethod()的实参需求形式。具体操作可以类比以下示例代码片段：</p>
+<pre><code>Class clazz =XposedHelpers.findClass(&quot;com.example.inner_class_demo.demo&quot;,lpparam.classLoader);
+
+XposedHelpers.callMethod(constructor.newInstance(),&quot;hidden_fun&quot;);
+</code></pre><p>以上代码仅适用于存在无参构造函数的类，如果目标类没有无参构造函数，那就麻烦一点了，需要根据构造函数参数类型，反射寻找构造函数，接着才能类似上述操作。具体操作可以类比以下示例代码片段：</p>
+<p>假设此时的构造函数仅有以下函数，即public demo(){}不存在的情形：</p>
+<pre><code>public demo(String str){...}
+
+
+Class clazz =XposedHelpers.findClass(&quot;com.example.inner_class_demo.demo&quot;,lpparam.classLoader);
+
+Constructor constructor = clazz.getConstructor(String.class);
+
+XposedHelpers.callMethod(constructor.newInstance(&quot;...&quot;),&quot;hidden_fun&quot;);
+</code></pre><ol>
+<li>内部类inner_class<br>内部类inner_class作为Android编程过程常见的一种编程方式，这里为了demo的全面，也将其列出。其实内部类整个处理过程与普通类极其相似，具体操作可以类比以下示例代码片段：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">XposedHelpers.findAndHookMethod(&quot;com.example.inner_class_demo.demo$inner_class&quot;,lpparam.classLoader,</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">        &quot;secret&quot;, String.class, boolean.class, new XC_MethodHook() &#123;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">          protectedvoid beforeHookedMethod(MethodHookParam  param) throws Throwable &#123;</div><div class="line"></div><div class="line">            for (int i = 0; i &lt; param.args.length;  i++) &#123;</div><div class="line"></div><div class="line">              XposedBridge.log(&quot; argument is:&quot; + param.args[i]);</div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">            int field_result = (int)XposedHelpers.getObjectField(param.thisObject,&quot;pMoney&quot;);</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">            XposedBridge.log(String.valueOf(field_result));</div><div class="line"></div><div class="line">          &#125;</div><div class="line"></div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>需要注意的是，这里打印目标函数参数列表的时候，用了XposedBridge.log()。这样的输出方式对日志的长度有限制，即长度不超过1024。特殊场合（比如：文件读取时，需要查看文件的内容）需要注意处理下，不然会出现截断的现象。</p>
+<ol>
+<li>匿名内部类$inner</li>
+</ol>
+<p>同内部类，一般是class_name$1之类，具体可以反编译目标程序查看下。常见的反编译工具，比如：apktool、jeb、baksmali均可以方便达到目的。</p>
+<ol>
+<li>构造函数</li>
+</ol>
+<p>构造函数demo()的处理，可以使用xposed提供的XposedHelpers类，具体操作可以类比以下示例代码片段：</p>
+<pre><code>Class clazz =XposedHelpers.findClass(&quot;com.example.inner_class_demo.demo&quot;,lpparam.classLoader);
+
+XposedHelpers.findAndHookConstructor(clazz,  new XC_MethodHook() {
+
+  ...
+
+});
+</code></pre><p>需要注意的是，由于构造函数不同于普通函数，函数名不需要提供（因为与类名相同，xposed框架处理函数名问题）。</p>
+<ol>
+<li>同时监控多函数<br>如果遇到某一类函数需要“批量”hook操作的时候，比如：需要同时监控多个构造函数、多个重载函数，我们此时不可能去挨个hook每个具体目标，那么应该怎么操作呢？我们可以这样来实现：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">hookAllConstructors(clazz, new XC_MethodHook() &#123;</div><div class="line"></div><div class="line">  ...</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line">hookAllMethods(clazz, new XC_MethodHook() &#123;</div><div class="line"></div><div class="line">  ...</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>hook重载函数时候，只需要忽略参数的具体类型即可。这种方式其实可以达到两种效果：1. 高效的处理函数重载问题 2.目标函数参数类型太复杂，自定义的类型太多。忽略参数类型，可以简化我们的hook工作。</p>
+<ol>
+<li>替换方法<br>只要改变一下回调方式就行了，原来是用XC_MethodHook()回调函数，实现在调用方法前和方法后执行hook代码,而只要把这个回调函数变成XC_MethodReplacement()回调函数，就可以实现直接替换原方法的目的，那么只要在这个回调函数里不加任何代码，就可以实现调用原方法，而不执行其代码的目的。</li>
+</ol>
+<p>attachBaseContext.classloader hook</p>
+<ol>
+<li>Multidex勾住技术</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">findAndHookMethod(Application.class, &quot;attach&quot;, Context.class, newXC_MethodHook() &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protectedvoid afterHookedMethod(MethodHookParam  param) throws Throwable &#123;</div><div class="line"></div><div class="line">        // place your hooks here, it  should work with lpparam.classLoader</div><div class="line"></div><div class="line">        findAndHookMethod(class, lpparam.classLoader, method,  arg1, arg2, …new XC_MethodHook() &#123;</div><div class="line"></div><div class="line">                    @Override</div><div class="line"></div><div class="line">                    protectedvoid beforeHookedMethod(MethodHookParam  param)throws Throwable &#123;</div><div class="line"></div><div class="line">                        // this will be called before  the clock was updated by</div><div class="line"></div><div class="line">                        // the original method</div><div class="line"></div><div class="line">                        Log.d(&quot;xposed&quot;, &quot;劫持开始了~&quot;);</div><div class="line"></div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    @Override</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">                    protectedvoid afterHookedMethod(MethodHookParam  param)throws Throwable &#123;</div><div class="line"></div><div class="line">                        // this will be called after the  clock was updated by</div><div class="line"></div><div class="line">                        // the original method</div><div class="line"></div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                &#125;);</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ol>
+<li>加固APP的勾住</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">if (lpparam.packageName.equals(&quot;com.XX.XXbank&quot;)) &#123;</div><div class="line"></div><div class="line">    XposedBridge.log(&quot;定位到hook程序&quot;);</div><div class="line"></div><div class="line">    XposedHelpers.findAndHookMethod(&quot;com.secneo.apkwrapper.ApplicationWrapper&quot;, lpparam.classLoader,</div><div class="line"></div><div class="line">           &quot;attachBaseContext&quot;, Context.class, new XC_MethodHook() &#123;</div><div class="line"></div><div class="line">              @Override</div><div class="line"></div><div class="line">              protectedvoid afterHookedMethod(MethodHookParam  param) throwsThrowable &#123;</div><div class="line"></div><div class="line">                  // TODO Auto-generated method stub</div><div class="line"></div><div class="line">                  super.afterHookedMethod(param);</div><div class="line"></div><div class="line">                  Context Ctx = (Context) param.args[0];</div><div class="line"></div><div class="line">                  ClassLoader  Clz = Ctx.getClassLoader();</div><div class="line"></div><div class="line">                  XposedHelpers.findAndHookMethod(&quot;com.iss.sdpersonalbank.util.Log&quot;, Clz, &quot;d&quot;, String.class,</div><div class="line"></div><div class="line">                         String.class, new XC_MethodHook() &#123;</div><div class="line"></div><div class="line">                            @Override</div><div class="line"></div><div class="line">                            protectedvoid  beforeHookedMethod(MethodHookParam param) throws Throwable &#123;</div><div class="line"></div><div class="line">                                // TODO Auto-generated method stub</div><div class="line"></div><div class="line">                                super.afterHookedMethod(param);</div><div class="line"></div><div class="line">                                String  Str1 = (String) param.args[0];</div><div class="line"></div><div class="line">                                String  Str2 = (String) param.args[1];</div><div class="line"></div><div class="line">                                Log.e(TAG, Str1 + &quot;:&quot; + Str2);</div><div class="line"></div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                         &#125;);</div></pre></td></tr></table></figure>
+<p>网络资源学习。。。。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/30/MarkDown语法书写blog-参考csdn模版/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          欢迎使用Markdown编辑器写博客
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/06/Xposed框架原理深入研究（网络分享）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Xposed框架原理深入研究（网络分享）.md</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Xposed开发技巧" data-title="Xposed开发技巧" data-url="http://duqian.site/2017/03/10/Xposed开发技巧/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Dusan-杜乾
+    	</div>
+      	<div class="footer-right">
+      		做一个有思想的Open Developer <a href="http://duqian.net.cn" target="_blank">duqian.net.cn</a> 
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?20e4e8625728d88901f9496e026e21c0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  <!-- Google Analytics -->
+<!-- <script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'baidu', 'auto');
+ga('send', 'pageview');
+
+</script> -->
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

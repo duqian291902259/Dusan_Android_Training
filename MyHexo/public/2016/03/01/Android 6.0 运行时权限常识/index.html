@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Android 6.0 运行时权限常识 | Android专栏-杜乾，Dusan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="如果APP运行在Android 6.0或以上版本的手机，并且target sdk&amp;gt;=23，那么在使用一些相对敏感的权限时，需要征求用户的许可。比如读写sdcard，摄像，联系人信息等。我们在开发时，如果指定了系统的最高运行版本低于23（ 比如targetSdkVersion 21），就算是运行在6.0手机也不会出现权限提示框的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 6.0 运行时权限常识">
+<meta property="og:url" content="http://duqian.site/2016/03/01/Android 6.0 运行时权限常识/index.html">
+<meta property="og:site_name" content="Android专栏-杜乾，Dusan's blog">
+<meta property="og:description" content="如果APP运行在Android 6.0或以上版本的手机，并且target sdk&amp;gt;=23，那么在使用一些相对敏感的权限时，需要征求用户的许可。比如读写sdcard，摄像，联系人信息等。我们在开发时，如果指定了系统的最高运行版本低于23（ 比如targetSdkVersion 21），就算是运行在6.0手机也不会出现权限提示框的。">
+<meta property="og:image" content="http://img.blog.csdn.net/20160422170040939">
+<meta property="og:image" content="http://img.blog.csdn.net/20160422161403280">
+<meta property="og:image" content="http://img.blog.csdn.net/20160422163053208">
+<meta property="og:image" content="http://img.blog.csdn.net/20160422175214772">
+<meta property="og:updated_time" content="2017-03-17T09:42:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 6.0 运行时权限常识">
+<meta name="twitter:description" content="如果APP运行在Android 6.0或以上版本的手机，并且target sdk&amp;gt;=23，那么在使用一些相对敏感的权限时，需要征求用户的许可。比如读写sdcard，摄像，联系人信息等。我们在开发时，如果指定了系统的最高运行版本低于23（ 比如targetSdkVersion 21），就算是运行在6.0手机也不会出现权限提示框的。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160422170040939">
+  
+    <link rel="alternative" href="/atom.xml" title="Android专栏-杜乾，Dusan&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic" style="backgroud-image:url("https://duqian291902259.github.io/img/dusan_head.png")">
+			<!-- 
+			<img lazy-src="/img/head_small.png" class="js-avatar">
+			 -->
+			<img src="/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+
+			<!-- <img src="https://duqian291902259.github.io/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;"> -->
+
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Dusan-杜乾</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Android Developer</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about/">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AIDL/" style="font-size: 10px;">AIDL</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-studio/" style="font-size: 10px;">Android studio</a> <a href="/tags/Android笔记/" style="font-size: 13.33px;">Android笔记</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Dusan/" style="font-size: 10px;">Dusan</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/IOS/" style="font-size: 10px;">IOS</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Jadx/" style="font-size: 10px;">Jadx</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/React-Native/" style="font-size: 10px;">React-Native</a> <a href="/tags/Retrofit/" style="font-size: 13.33px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/Weex/" style="font-size: 16.67px;">Weex</a> <a href="/tags/Xposed/" style="font-size: 13.33px;">Xposed</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/okHttp/" style="font-size: 10px;">okHttp</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/webrtc/" style="font-size: 10px;">webrtc</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/反编译/" style="font-size: 10px;">反编译</a> <a href="/tags/图片压缩/" style="font-size: 10px;">图片压缩</a> <a href="/tags/权限/" style="font-size: 10px;">权限</a> <a href="/tags/杜乾/" style="font-size: 10px;">杜乾</a> <a href="/tags/网络/" style="font-size: 13.33px;">网络</a> <a href="/tags/连麦/" style="font-size: 10px;">连麦</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/dzsw0117">杜乾的专栏</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.site/">我的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ximelly.com/">Ximelly的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.net.cn/">Dusan的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Dusan,Android Developer,I&#39;m concentrated on android，web &amp; native.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Dusan-杜乾</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/head_small.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Dusan-杜乾</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Android Developer</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about/">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Android 6.0 运行时权限常识" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/01/Android 6.0 运行时权限常识/" class="article-date">
+  	<time datetime="2016-03-01T14:10:06.000Z" itemprop="datePublished">2016-03-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 6.0 运行时权限常识
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/权限/">权限</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果APP运行在Android 6.0或以上版本的手机，并且target sdk&gt;=23，那么在使用一些相对敏感的权限时，需要征求用户的许可。比如读写sdcard，摄像，联系人信息等。我们在开发时，如果指定了系统的最高运行版本低于23（ 比如targetSdkVersion 21），就算是运行在6.0手机也不会出现权限提示框的。</p>
+<a id="more"></a>
+<p>request权限 如图所示：<br><img src="http://img.blog.csdn.net/20160422170040939" alt="request权限"><br>android 6.0发布几个月之后，升级率很低，很少应用会使用sdk23编译项目，如果要编译，就必须了解request权限的一些事。</p>
+<h3 id="一，Android-6-0-运行时权限"><a href="#一，Android-6-0-运行时权限" class="headerlink" title="一，Android 6.0 运行时权限"></a>一，Android 6.0 运行时权限</h3><p>Android 6.0在原有的AndroidManifest.xml声明权限的基础上，新增了运行时权限动态检测，以下权限都需要在运行时判断：</p>
+<ol>
+<li>身体传感器 </li>
+<li>日历 摄像头 </li>
+<li>通讯录 </li>
+<li>地理位置  </li>
+<li>麦克风  </li>
+<li>电话  </li>
+<li>短信  </li>
+<li>存储空间  </li>
+<li>运行时权限处理<br>PS:targetSdkVersion小于23的应用默认授予了所申请的所有权限，所以如果你以前的APP设置的targetSdkVersion低于23，也能正常使用。等于或者大于23，则必须 request permission。<h3 id="二，声明目标SDK版本"><a href="#二，声明目标SDK版本" class="headerlink" title="二，声明目标SDK版本"></a>二，声明目标SDK版本</h3>我们需要在build.gradle中声明targetSdkVersion为23.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line"> compileSdkVersion 23</div><div class="line"> buildToolsVersion &quot;23.0.2&quot;</div><div class="line"></div><div class="line"> defaultConfig &#123;</div><div class="line">     applicationId &quot;com.youapp&quot;</div><div class="line">     minSdkVersion 14</div><div class="line">     targetSdkVersion 23</div><div class="line">     versionCode 1</div><div class="line">     versionName &quot;1.0&quot;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="三，检查并request权限"><a href="#三，检查并request权限" class="headerlink" title="三，检查并request权限"></a>三，检查并request权限</h3><p>我们需要在用到权限的地方，检查是否已经拥有权限，比如读写外置SD卡的权限，我们在写入之前检查是否有权限，没有则申请权限,for exsample：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">private void requestContactPermission() &#123;</div><div class="line">        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS)</div><div class="line">                != PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">            //申请 WRITE_CONTACTS 权限</div><div class="line">            ActivityCompat.requestPermissions(this, new String[]&#123;Manifest.permission.WRITE_CONTACTS&#125;,</div><div class="line">                    REQUEST_CODE_WRITE_CONTACTS);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="四，用户许可与否的回调处理。"><a href="#四，用户许可与否的回调处理。" class="headerlink" title="四，用户许可与否的回调处理。"></a>四，用户许可与否的回调处理。</h3><p>权限申请后，用户选择后，可能allow，可能deny。回调onRequestPermissionsResult方法, 该方法类似于onActivityResult。如果是fragment，最好是使用父fragment，但不是使用ActivityCompat。建议使用getParentFragment().requestPermissions方法。<br>兼容库support-v4中的方法有：<br>ContextCompat.checkSelfPermission()<br>ActivityCompat.requestPermissions()<br>ActivityCompat.OnRequestPermissionsResultCallback<br>ActivityCompat.shouldShowRequestPermissionRationale()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) &#123;</div><div class="line">    super.onRequestPermissionsResult(requestCode, permissions, grantResults);</div><div class="line">    handleGrantResults(requestCode,grantResults);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="五，根据requestCode和grantResults-授权结果-做相应的处理。"><a href="#五，根据requestCode和grantResults-授权结果-做相应的处理。" class="headerlink" title="五，根据requestCode和grantResults(授权结果)做相应的处理。"></a>五，根据requestCode和grantResults(授权结果)做相应的处理。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">private void handleGrantResults(int requestCode, int[] grantResults) &#123;</div><div class="line">      if (requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_CODE) &#123;</div><div class="line">          if (grantResults[0] == PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">              // Permission Granted 获得权限后执行xxx</div><div class="line">          &#125; else &#123;</div><div class="line">              // Permission Denied 拒绝后xx的操作。</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="六，用户拒绝了怎么处理？"><a href="#六，用户拒绝了怎么处理？" class="headerlink" title="六，用户拒绝了怎么处理？"></a>六，用户拒绝了怎么处理？</h3><p>如果用户拒绝了一次，后面再申请，会出现不再提醒的选项，再次拒绝，你的app不作后续处理，就嗝屁了。功能肯定受限，没法用了。<br><img src="http://img.blog.csdn.net/20160422161403280" alt="拒绝后在此提示，有never ask again"><br>这时候怎么办呢？用户的行为我们不清楚，得预防一下。<br>我们检测下是否拒绝了两次或以上，DIY给个提示。比如申请写联系人的权限。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">private void handleContactPermission() &#123;</div><div class="line">        if (Integer.parseInt(Build.VERSION.SDK)&gt;=23) &#123;</div><div class="line">            int hasWriteContactsPermission = checkSelfPermission(Manifest.permission.WRITE_CONTACTS);</div><div class="line">            if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">                if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) &#123;</div><div class="line">                    showMessageOKCancel(&quot;You need to allow access to Contacts&quot;,</div><div class="line">                            new DialogInterface.OnClickListener() &#123;</div><div class="line">                                @Override</div><div class="line">                                public void onClick(DialogInterface dialog, int which) &#123;</div><div class="line">                                    requestContactPermission();//确定后申请权限。</div><div class="line">                                &#125;</div><div class="line">                            &#125;);</div><div class="line">                    return;</div><div class="line">                &#125;</div><div class="line">                requestContactPermission();//没有权限的话，申请。</div><div class="line">            &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>效果如下：<br><img src="http://img.blog.csdn.net/20160422163053208" alt="提示用户必须允许访问"></p>
+<h3 id="七，权限组permission-group"><a href="#七，权限组permission-group" class="headerlink" title="七，权限组permission-group"></a>七，权限组permission-group</h3><p>dangerous permissions 被分入到 9 个权限组.<br>同一组的任何一个权限被授权了，其他权限也自动被授权。例如，一旦WRITE_CONTACTS被授权了，app也有READ_CONTACTS和GET_ACCOUNTS了。<br><img src="http://img.blog.csdn.net/20160422175214772" alt="permission-group"></p>
+<p>github已经有一些封装好的permissionUtil，大家可以下载学习。不足之处，后续完善。<br>Dusan，291902259，杜工。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/26/Android之MVP架构/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Android之MVP架构
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/15/Android基本的动画& animation工具类/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android基本的动画&amp; animation工具类</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android 6.0 运行时权限常识" data-title="Android 6.0 运行时权限常识" data-url="http://duqian.site/2016/03/01/Android 6.0 运行时权限常识/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Dusan-杜乾
+    	</div>
+      	<div class="footer-right">
+      		做一个有思想的Open Developer <a href="http://duqian.net.cn" target="_blank">duqian.net.cn</a> 
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?20e4e8625728d88901f9496e026e21c0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  <!-- Google Analytics -->
+<!-- <script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'baidu', 'auto');
+ga('send', 'pageview');
+
+</script> -->
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

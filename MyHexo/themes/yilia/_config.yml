@@ -1,0 +1,78 @@
+# Header
+menu:
+  主页: /
+  所有文章: /archives
+  关于我: /about/
+
+# Directory
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+
+# SubNav
+subnav:
+  github: "https://github.com/duqian291902259"
+  weibo: "http://weibo.com/2876301234"
+  mail: "mailto:duqian2010@gmail.com"
+  rss: "http://blog.csdn.net/dzsw0117"
+  #linkedin: "http://duqian.net.cn"
+  #rss: "#"
+  #zhihu: "#"
+  #douban: "#"
+  #facebook: "duqian2010@gmail.com"
+  #google: "#"
+  #twitter: "#"
+  #linkedin: "#"
+
+rss: /atom.xml
+
+# Content
+excerpt_link: more
+fancybox: true
+mathjax: true
+# Enable awesome-toc
+awesome_toc: true
+
+# Enable githubRepoWidget
+github_repo_widget: true
+
+# 是否开启动画效果
+animate: true
+
+# 是否在新窗口打开链接
+open_in_new: true
+
+# Miscellaneous
+google_analytics: 'baidu'
+favicon: /favicon.png
+
+#你的头像url
+avatar: /img/head_small.png
+#'http://img.blog.csdn.net/20160615160152852'
+#https://duqian291902259.github.io/dusan/images/dusan_head.png
+#是否开启分享
+share_jia: true
+share_addthis: false
+#是否开启多说评论，填写你在多说申请的项目名称 duoshuo: duoshuo-key
+#若使用disqus，请在博客config文件中填写disqus_shortname，并关闭多说评论
+duoshuo: true
+#是否开启云标签
+tagcloud: true
+#[Android, Java, Web, Native] #Native，Js，React，Node，HTML5，CSS，SQL，技术追梦人
+
+#是否开启友情链接
+#不开启——
+#friends: false
+#开启——
+friends:
+  杜乾的专栏: http://blog.csdn.net/dzsw0117
+  我的博客: http://duqian.site/
+  Ximelly的博客: http://www.ximelly.com/
+  Dusan的博客: http://duqian.net.cn/
+#是否开启“关于我”。
+#不开启——
+#aboutme: false
+#开启——
+aboutme: Dusan,Android Developer,I'm concentrated on android，web & native.
+# 404错误
+permalink: /404.html

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>webrtc入门之客户端连麦demo-apprtc | Android专栏-杜乾，Dusan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="webrtc很强大，一起学习吧。webrtc编译起来比较痛苦，源码和工具链下载下来十几G，源码samples里面提供了androidapp项目，只有源码，没有jar包和so库，所以我编译好webrtc，提取出所需的jar包和so文件，并把里面androidapp弄成android studio项目，可以正常编译运行。这个demo实现webrtc连麦，点对点视频通信，对webrtc初学者还是挺有帮助">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webrtc入门之客户端连麦demo-apprtc">
+<meta property="og:url" content="http://duqian.site/2018/01/30/webrtc入门之客户端连麦demo-apprtc/index.html">
+<meta property="og:site_name" content="Android专栏-杜乾，Dusan's blog">
+<meta property="og:description" content="webrtc很强大，一起学习吧。webrtc编译起来比较痛苦，源码和工具链下载下来十几G，源码samples里面提供了androidapp项目，只有源码，没有jar包和so库，所以我编译好webrtc，提取出所需的jar包和so文件，并把里面androidapp弄成android studio项目，可以正常编译运行。这个demo实现webrtc连麦，点对点视频通信，对webrtc初学者还是挺有帮助">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2001922-8ea966a296ef66a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2001922-f464498ba6143195.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2001922-b73b87fe19f2b2ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2001922-3d0a0249b5849528.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-01-30T04:05:59.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webrtc入门之客户端连麦demo-apprtc">
+<meta name="twitter:description" content="webrtc很强大，一起学习吧。webrtc编译起来比较痛苦，源码和工具链下载下来十几G，源码samples里面提供了androidapp项目，只有源码，没有jar包和so库，所以我编译好webrtc，提取出所需的jar包和so文件，并把里面androidapp弄成android studio项目，可以正常编译运行。这个demo实现webrtc连麦，点对点视频通信，对webrtc初学者还是挺有帮助">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2001922-8ea966a296ef66a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternative" href="/atom.xml" title="Android专栏-杜乾，Dusan&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic" style="backgroud-image:url("https://duqian291902259.github.io/img/dusan_head.png")">
+			<!-- 
+			<img lazy-src="/img/head_small.png" class="js-avatar">
+			 -->
+			<img src="/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+
+			<!-- <img src="https://duqian291902259.github.io/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;"> -->
+
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Dusan-杜乾</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Android Developer</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about/">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AIDL/" style="font-size: 10px;">AIDL</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-studio/" style="font-size: 10px;">Android studio</a> <a href="/tags/Android笔记/" style="font-size: 13.33px;">Android笔记</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Dusan/" style="font-size: 10px;">Dusan</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/IOS/" style="font-size: 10px;">IOS</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Jadx/" style="font-size: 10px;">Jadx</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/React-Native/" style="font-size: 10px;">React-Native</a> <a href="/tags/Retrofit/" style="font-size: 13.33px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/Weex/" style="font-size: 16.67px;">Weex</a> <a href="/tags/Xposed/" style="font-size: 13.33px;">Xposed</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/okHttp/" style="font-size: 10px;">okHttp</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/webrtc/" style="font-size: 10px;">webrtc</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/反编译/" style="font-size: 10px;">反编译</a> <a href="/tags/图片压缩/" style="font-size: 10px;">图片压缩</a> <a href="/tags/权限/" style="font-size: 10px;">权限</a> <a href="/tags/杜乾/" style="font-size: 10px;">杜乾</a> <a href="/tags/网络/" style="font-size: 13.33px;">网络</a> <a href="/tags/连麦/" style="font-size: 10px;">连麦</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/dzsw0117">杜乾的专栏</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.site/">我的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ximelly.com/">Ximelly的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.net.cn/">Dusan的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Dusan,Android Developer,I&#39;m concentrated on android，web &amp; native.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Dusan-杜乾</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/head_small.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Dusan-杜乾</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Android Developer</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about/">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-webrtc入门之客户端连麦demo-apprtc" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/01/30/webrtc入门之客户端连麦demo-apprtc/" class="article-date">
+  	<time datetime="2018-01-30T03:55:00.000Z" itemprop="datePublished">2018-01-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      webrtc入门之客户端连麦demo-apprtc
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/p2p/">p2p</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webrtc/">webrtc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/连麦/">连麦</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/音视频/">音视频</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>webrtc很强大，一起学习吧。webrtc编译起来比较痛苦，源码和工具链下载下来十几G，源码samples里面提供了androidapp项目，只有源码，没有jar包和so库，所以我编译好webrtc，提取出所需的jar包和so文件，并把里面androidapp弄成android studio项目，可以正常编译运行。这个demo实现webrtc连麦，点对点视频通信，对webrtc初学者还是挺有帮助的。<a id="more"></a></p>
+<p>以下是关于这个demo的详细信息，英文不是装逼，因为这个源码我分享在了github上面。<br>WebRTC Demos:<a href="https://github.com/duqian291902259/webrtc-android-demo-apprtc" target="_blank" rel="external">webrtc-android-demo-apprtc</a></p>
+<p>This demo is based on WebRTC.<br>WebRTC is a free, open project.The source code of this demo is based on official samples(src/samples/androidapp). I have compiled webrtc source to get required .so and .jar files, so you can just build it by android studio.<br><img src="http://upload-images.jianshu.io/upload_images/2001922-8ea966a296ef66a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="webrtc-android-demo-as-project.png"></p>
+<h3 id="How-to-build-and-run"><a href="#How-to-build-and-run" class="headerlink" title="How to build and run?"></a>How to build and run?</h3><p>Please clone this project,build it with android stuido,install the target apk files to your devices</p>
+<h3 id="How-to-start"><a href="#How-to-start" class="headerlink" title="How to start"></a>How to start</h3><p>1，go to website : <a href="https://appr.tc/" target="_blank" rel="external">https://appr.tc/</a>.input your room id(any number).<br><img src="http://upload-images.jianshu.io/upload_images/2001922-f464498ba6143195.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="appr.tc-webrtc-server.png"></p>
+<p>2，open the apprtc app,input the same room id.</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2001922-b73b87fe19f2b2ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AppRTC-android-demo-p2p.png"></p>
+<p>3，Experience p2p connectivity with webrtc.</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2001922-3d0a0249b5849528.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="AppRTC-connectivity.png"></p>
+<h3 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h3><p>Maybe I will share more articles about webrtc in the future.</p>
+<h3 id="Thanks-to-WebRTC-team！"><a href="#Thanks-to-WebRTC-team！" class="headerlink" title="Thanks to WebRTC team！"></a>Thanks to WebRTC team！</h3><p>Dusan’s E-mail: duqian2010@gmail.com</p>
+<p>WebRTC Demos:<a href="https://github.com/duqian291902259/webrtc-android-demo-apprtc" target="_blank" rel="external">webrtc-android-demo-apprtc</a></p>
+<p>如果对webrtc编译感兴趣，以下是我在linux ubuntu 14.04上编译webrtc所用的命令，希望对你有帮助。</p>
+<h3 id="Development"><a href="#Development" class="headerlink" title="Development"></a>Development</h3><p>if you try to compile src of webrtc,you’ll depressed<br>at its large size,the total checkout size will be about 16 GB. and more than 30G after compiled.<br>for more details about getting source code: <a href="https://webrtc.org/native-code/android/" target="_blank" rel="external">https://webrtc.org/native-code/android/</a></p>
+<p>if you have installed all required softwares in linux.<br>let’s excute cmds like this:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#duqian2010@gmail.com</div><div class="line"></div><div class="line">export PATH=$PATH:~/webrtc/depot_tools</div><div class="line"></div><div class="line">cd ~/webrtc/android/</div><div class="line"></div><div class="line">fetch --nohooks webrtc_android</div><div class="line">gclient sync</div><div class="line">gclient runhooks</div><div class="line"></div><div class="line">ls</div><div class="line">cd src</div><div class="line"></div><div class="line">git new-branch webrtc_compile</div><div class="line">git checkout webrtc_compile</div><div class="line"></div><div class="line">echo "--------------compile config：android，arm-----------------"</div><div class="line"></div><div class="line">gn gen out/arm --args='target_os="android" target_cpu="arm"'</div><div class="line"></div><div class="line">echo "-----------------start compiling webrtc---------------------"</div><div class="line"></div><div class="line">ninja -C out/arm</div><div class="line"></div><div class="line">echo "-----------------compile webrtc done---------------------"</div><div class="line"></div><div class="line">#ninja -C out/arm AppRTCMobile</div><div class="line">#build/android/gradle/generate_gradle.py --output-directory $PWD/out/arm --target "//webrtc/examples:AppRTCMobile" --use-gradle-process-resources --split-projects --canary</div><div class="line"></div><div class="line">echo "start copying jar files"</div><div class="line">mkdir ../libs/armeabi-v7a/</div><div class="line"></div><div class="line">cp out/arm/lib.java/sdk/android/libjingle_peerconnection_java.jar ../libs/libjingle_peerconnection_java.jar </div><div class="line">cp out/arm/lib.java/rtc_base/base_java.jar ../libs/base_java.jar </div><div class="line">cp out/arm/gen/modules/audio_device/audio_device_java__compile_java.javac.jar ../libs/audio_device_java__compile_java.javac.jar</div><div class="line">cp out/arm/lib.java/examples/androidapp/third_party/autobanh/autobanh.jar ../libs/autobanh.jar</div><div class="line"></div><div class="line">echo "start copying so files"</div><div class="line"></div><div class="line">cp out/arm/libjingle_peerconnection_so.so ../libs/armeabi-v7a/libjingle_peerconnection_so.so</div><div class="line"></div><div class="line">echo "task has finished"</div><div class="line">exit 0</div><div class="line"></div><div class="line"># scp /Users/duqian/Downloads/webrtc_arm.sh nonolive@192.168.0.18:/home/nonolive/webrtc/android/</div></pre></td></tr></table></figure>
+<p>谢，喜欢就分享吧。</p>
+<hr>
+<p>杜乾，Dusan，duqian2010@gmail.com,QQ：291902259</p>
+<p>微信公众号：OpenDeveloper</p>
+<p>分享不仅限于Android，Web 开发，做开放的开发者。</p>
+<p>Blog：<a href="http://blog.csdn.net/dzsw0117" target="_blank" rel="external">http://blog.csdn.net/dzsw0117</a></p>
+<p>Github:<a href="https://github.com/duqian291902259" target="_blank" rel="external">duqian291902259</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/30/MarkDown语法书写blog-参考csdn模版/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">欢迎使用Markdown编辑器写博客</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="webrtc入门之客户端连麦demo-apprtc" data-title="webrtc入门之客户端连麦demo-apprtc" data-url="http://duqian.site/2018/01/30/webrtc入门之客户端连麦demo-apprtc/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Dusan-杜乾
+    	</div>
+      	<div class="footer-right">
+      		做一个有思想的Open Developer <a href="http://duqian.net.cn" target="_blank">duqian.net.cn</a> 
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?20e4e8625728d88901f9496e026e21c0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  <!-- Google Analytics -->
+<!-- <script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'baidu', 'auto');
+ga('send', 'pageview');
+
+</script> -->
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

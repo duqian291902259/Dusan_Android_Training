@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Weex开源内测之初体验与未来展望 | Android专栏-杜乾，Dusan&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近一直在研究移动终端的跨平台解决方案。ReactNative对Native开发人员来说，学习成本有点高，weex相对有优势。weex内测以来，两个月内已经有5000＋开发者加入weex项目的测试了。我通过阿里weex团队成员，获得了，github内测资格，有权限访问weex仓库，下载了源码，就一起研究下吧。weex环境配置还是比较简单方便的，推荐mac开发，有前端基础上手更快。我咨询了阿里－鬼道">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Weex开源内测之初体验与未来展望">
+<meta property="og:url" content="http://duqian.site/2016/06/07/Weex开源内测之初体验与未来展望/index.html">
+<meta property="og:site_name" content="Android专栏-杜乾，Dusan's blog">
+<meta property="og:description" content="最近一直在研究移动终端的跨平台解决方案。ReactNative对Native开发人员来说，学习成本有点高，weex相对有优势。weex内测以来，两个月内已经有5000＋开发者加入weex项目的测试了。我通过阿里weex团队成员，获得了，github内测资格，有权限访问weex仓库，下载了源码，就一起研究下吧。weex环境配置还是比较简单方便的，推荐mac开发，有前端基础上手更快。我咨询了阿里－鬼道">
+<meta property="og:image" content="http://img.blog.csdn.net/20160617201328084">
+<meta property="og:image" content="http://img.blog.csdn.net/20160621163314311">
+<meta property="og:image" content="http://img.blog.csdn.net/20160617201301645">
+<meta property="og:image" content="http://img.blog.csdn.net/20160621170000343">
+<meta property="og:updated_time" content="2016-07-08T07:31:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Weex开源内测之初体验与未来展望">
+<meta name="twitter:description" content="最近一直在研究移动终端的跨平台解决方案。ReactNative对Native开发人员来说，学习成本有点高，weex相对有优势。weex内测以来，两个月内已经有5000＋开发者加入weex项目的测试了。我通过阿里weex团队成员，获得了，github内测资格，有权限访问weex仓库，下载了源码，就一起研究下吧。weex环境配置还是比较简单方便的，推荐mac开发，有前端基础上手更快。我咨询了阿里－鬼道">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160617201328084">
+  
+    <link rel="alternative" href="/atom.xml" title="Android专栏-杜乾，Dusan&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic" style="backgroud-image:url("https://duqian291902259.github.io/img/dusan_head.png")">
+			<!-- 
+			<img lazy-src="/img/head_small.png" class="js-avatar">
+			 -->
+			<img src="/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+
+			<!-- <img src="https://duqian291902259.github.io/img/head_small.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;"> -->
+
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Dusan-杜乾</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Android Developer</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about/">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+					        
+								<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+					        
+								<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AIDL/" style="font-size: 10px;">AIDL</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-studio/" style="font-size: 10px;">Android studio</a> <a href="/tags/Android笔记/" style="font-size: 13.33px;">Android笔记</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Dusan/" style="font-size: 10px;">Dusan</a> <a href="/tags/EventBus/" style="font-size: 10px;">EventBus</a> <a href="/tags/IOS/" style="font-size: 10px;">IOS</a> <a href="/tags/JDK/" style="font-size: 10px;">JDK</a> <a href="/tags/Jadx/" style="font-size: 10px;">Jadx</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 10px;">NDK</a> <a href="/tags/Proguard/" style="font-size: 10px;">Proguard</a> <a href="/tags/React-Native/" style="font-size: 10px;">React-Native</a> <a href="/tags/Retrofit/" style="font-size: 13.33px;">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/Weex/" style="font-size: 16.67px;">Weex</a> <a href="/tags/Xposed/" style="font-size: 13.33px;">Xposed</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/okHttp/" style="font-size: 10px;">okHttp</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/webrtc/" style="font-size: 10px;">webrtc</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/反编译/" style="font-size: 10px;">反编译</a> <a href="/tags/图片压缩/" style="font-size: 10px;">图片压缩</a> <a href="/tags/权限/" style="font-size: 10px;">权限</a> <a href="/tags/杜乾/" style="font-size: 10px;">杜乾</a> <a href="/tags/网络/" style="font-size: 13.33px;">网络</a> <a href="/tags/连麦/" style="font-size: 10px;">连麦</a>
+					</div>
+				</section>
+				
+
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/dzsw0117">杜乾的专栏</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.site/">我的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.ximelly.com/">Ximelly的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://duqian.net.cn/">Dusan的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Dusan,Android Developer,I&#39;m concentrated on android，web &amp; native.</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Dusan-杜乾</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/head_small.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Dusan-杜乾</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Android Developer</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about/">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/duqian291902259" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2876301234" title="weibo">weibo</a>
+			        
+						<a class="mail" target="_blank" href="mailto:duqian2010@gmail.com" title="mail">mail</a>
+			        
+						<a class="rss" target="_blank" href="http://blog.csdn.net/dzsw0117" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Weex开源内测之初体验与未来展望" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/07/Weex开源内测之初体验与未来展望/" class="article-date">
+  	<time datetime="2016-06-07T11:55:00.000Z" itemprop="datePublished">2016-06-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Weex开源内测之初体验与未来展望
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Weex/">Weex</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Weex/">Weex</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近一直在研究移动终端的跨平台解决方案。ReactNative对Native开发人员来说，学习成本有点高，weex相对有优势。weex内测以来，两个月内已经有5000＋开发者加入weex项目的测试了。我通过阿里weex团队成员，获得了，github内测资格，有权限访问weex仓库，下载了源码，就一起研究下吧。<br>weex环境配置还是比较简单方便的，推荐mac开发，有前端基础上手更快。<br>我咨询了阿里－鬼道，新手学RN还是Weex，有何区别，他给我发了这样一条信息，看看它与React Native的比较：</p>
+<blockquote>
+<p>挺好的问题：</p>
+<ol>
+<li>DSL 语法差异很大，可能 weex 更轻量一些，上手快一些；</li>
+<li>Native 性能 weex 还是有一些优势的，包也更小。<a id="more"></a>
+<img src="http://img.blog.csdn.net/20160617201328084" alt="通过内测资格"></li>
+</ol>
+</blockquote>
+<p>下面是安装weex开发环境。可以参照官方文档：<a href="http://alibaba.github.io/weex/doc/tutorial.html" target="_blank" rel="external">weex tutorial</a></p>
+<h3 id="1，安装官方demo：playground-apk"><a href="#1，安装官方demo：playground-apk" class="headerlink" title="1，安装官方demo：playground.apk"></a>1，安装官方demo：playground.apk</h3><p>下载apk文件，<a href="http://alibaba.github.io/weex/download.html" target="_blank" rel="external">Weex Playground</a><br>执行命令，，安装后的demo如图：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb install -r /Users/duqian/Desktop/Learning/Weex/playground.apk</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20160621163314311" alt="安装后的demo"></p>
+<h3 id="2，安装命令行工具：-weex-toolkit"><a href="#2，安装命令行工具：-weex-toolkit" class="headerlink" title="2，安装命令行工具： weex-toolkit"></a>2，安装命令行工具： weex-toolkit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g weex-toolkit</div></pre></td></tr></table></figure>
+<p>前提是要有node环境，如果没有安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install node</div></pre></td></tr></table></figure></p>
+<p>brew没有安装，请先安装Homebrew。如何安装，可以参照我的博文：<br><a href="http://blog.csdn.net/dzsw0117/article/details/51260020：[Mac下安装常用开发工具](http://blog.csdn.net/dzsw0117/article/details/51260020" target="_blank" rel="external">http://blog.csdn.net/dzsw0117/article/details/51260020：[Mac下安装常用开发工具](http://blog.csdn.net/dzsw0117/article/details/51260020</a>)</p>
+<h3 id="3-编译测试"><a href="#3-编译测试" class="headerlink" title="3.编译测试"></a>3.编译测试</h3><p>将下面的代码写成demo，命名tech_list.we文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">  &lt;div class=&quot;container&quot;&gt;</div><div class="line">    &lt;div class=&quot;cell&quot;&gt;</div><div class="line">        &lt;image class=&quot;thumb&quot; src=&quot;http://t.cn/RGE3AJt&quot;&gt;&lt;/image&gt;</div><div class="line">        &lt;text class=&quot;title&quot;&gt;JavaScript&lt;/text&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line">&lt;style&gt;</div><div class="line">  .cell &#123; margin-top: 10; margin-left: 10; flex-direction: row; &#125;</div><div class="line">  .thumb &#123; width: 200; height: 200; &#125;</div><div class="line">  .title &#123; text-align: center; flex: 1; color: grey; font-size: 50; &#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
+<p>进入tech_list.we所在的文件目录，运行终端命令就可以在浏览器看到页面效果了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">weex tech_list.we</div></pre></td></tr></table></figure></p>
+<p>如果ok，会打开浏览器跳转到渲染出来的页面。<br>DuQian-MBP:~ duqian$ weex /Users/duqian/Desktop/Learning/Weex/demo/tech_list.we<br>info Fri Jun 17 2016 12:04:35 GMT+0800 (CST)WebSocket  is listening on port 8082<br>info Fri Jun 17 2016 12:04:35 GMT+0800 (CST)http  is listening on port 8081 </p>
+<h3 id="4，测试weex手机运行app中的效果"><a href="#4，测试weex手机运行app中的效果" class="headerlink" title="4，测试weex手机运行app中的效果"></a>4，测试weex手机运行app中的效果</h3><p>终端使用下面的命令运行后会生成一个二维码在终端。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">weex tech_list.we --qr -h &#123;ip or hostname&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20160617201301645" alt="生成二维码"><br>手机安装了playground.apk ，然后里面有扫码二维码的功能，扫一扫就能看到这个页面效果了，实际上对应的就是pc端的页面地址。<br>是不是很简单啊？weex手机测试效果:<br><img src="http://img.blog.csdn.net/20160621170000343" alt="weex手机测试效果"></p>
+<h3 id="5-weex团队2016－06－21语录"><a href="#5-weex团队2016－06－21语录" class="headerlink" title="5,weex团队2016－06－21语录"></a>5,weex团队2016－06－21语录</h3><h4 id="阿里－克爽"><a href="#阿里－克爽" class="headerlink" title="阿里－克爽"></a>阿里－克爽</h4><p>Ｗｅｅｘ的源码其实不复杂的，相比ＲＮ，所以希望以后大家都能参与进来维护。<br>大家从表面看像轮子  但深入了解下去会发现不一样的。<br>你见过哪个阿里的项目跟Ｗｅｅｘ这样的，开源前先内测一样　所以不要担心烂尾　我们的投入是空前的</p>
+<h4 id="阿里-天施-14-56-40"><a href="#阿里-天施-14-56-40" class="headerlink" title="阿里-天施  14:56:40"></a>阿里-天施  14:56:40</h4><p>其实做Weex项目，还是有我们自己的理念。<br>一是三端一致性；<br>二是希望做的事情能够帮助前端开发人员在移动开发这块大显身手（把过去的知识技能积累，工程经验）很快会搬移到移动业务开发上去。当然这一步同时也会考虑native同学的成本，当前是有一些事情的判断和先后取舍；<br>三是我们其实更希望从页面到整个App构建，我们觉得rn一上来就想构建整个App其实是不合理的，从做好每个业务开始，逐步到把整体App做好，才是合理的。</p>
+<p>native 使用weex成本，和rn应该差不多，我们也在工具上在降低这些成本。</p>
+<p>所以我们也提供了app framework，但演进上是稳健的根据开发者需求来的，不是希望一上来就翻天覆地的变化。</p>
+<p>我们跟rn团队关系，其实更多是交流，大家对于这块更多是相互学习。没有国内同学觉得彼此之间那么紧张。。。去年我们在Qcon SF分享的时候facebook同学就很感兴趣。这次我们去wwwdc,他们核心团队跑过来申请我们的项目access。。<br>每一个开源项目都有自己的核心理念和坚持.Weex团队也不希望说太多，更多看投入帮助开发者解决了什么问题。</p>
+<h4 id="阿里-天施-15-07-36"><a href="#阿里-天施-15-07-36" class="headerlink" title="阿里-天施  15:07:36"></a>阿里-天施  15:07:36</h4><p>我们整个项目之所以愿意大力投入，从去年年底到现在，我们看到了这块大力投入对于改变阿里的移动开发方式，提升开发者效率有很大的帮助。。。目前半年来努力，阿里内部已经普遍接受Weex，我们希望通过1-2年未来彻底改变阿里的移动开发模式(业务上用Weex,专业native领域专业同学负责作为组件透出给业务使用，Native与业务彻底解耦，术业有专攻）。。</p>
+<h4 id="我相信weex会发展起来，努力跟着大神的脚步走吧。欢迎交流。"><a href="#我相信weex会发展起来，努力跟着大神的脚步走吧。欢迎交流。" class="headerlink" title="我相信weex会发展起来，努力跟着大神的脚步走吧。欢迎交流。"></a>我相信weex会发展起来，努力跟着大神的脚步走吧。欢迎交流。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Dusan_Q：291902259，duqian.net.cn，公众号：OpenDeveloper</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/16/跨平台开发之React Native初体验/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          跨平台开发之React Native初体验
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/25/build.gradle的常用配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">build.gradle的常用配置</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Weex开源内测之初体验与未来展望" data-title="Weex开源内测之初体验与未来展望" data-url="http://duqian.site/2016/06/07/Weex开源内测之初体验与未来展望/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 Dusan-杜乾
+    	</div>
+      	<div class="footer-right">
+      		做一个有思想的Open Developer <a href="http://duqian.net.cn" target="_blank">duqian.net.cn</a> 
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?20e4e8625728d88901f9496e026e21c0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  <!-- Google Analytics -->
+<!-- <script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'baidu', 'auto');
+ga('send', 'pageview');
+
+</script> -->
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
