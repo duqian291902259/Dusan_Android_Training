@@ -10,7 +10,8 @@ About Me
 ## Github
 https://github.com/duqian291902259
 
-E-mail and facebook :  duqian2010@gmail.com , 
+### E-mail and facebook 
+duqian2010@gmail.com
 
 ### my web : [http://duqian.site](http://duqian.site)
 
