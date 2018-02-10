@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/as_open">
+        <site.duqian.autowechat.android.view.CustomSwitchPreference
+            android:defaultValue="true"
+            android:icon="@mipmap/settings_ic_wechat"
+            android:key="@string/key_wechat_enable"
+            android:title="@string/title_wechat"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/action_auto_function"
+        android:key="@string/key_all_function">
+
+        <site.duqian.autowechat.android.view.CustomSwitchPreference
+            android:defaultValue="true"
+            android:title="@string/action_robot_repley"
+            android:summary="@string/action_robot_repley_description"
+            android:key="@string/key_robot_repley"/>
+
+        <site.duqian.autowechat.android.view.RangeSeekBarPreference
+            end="max_value"
+            start="min_value"
+            android:defaultValue="true"
+            android:dependency="@string/key_robot_repley"
+            android:title="@string/action_message_deley" />
+
+
+        <site.duqian.autowechat.android.view.CustomSwitchPreference
+            android:defaultValue="false"
+            android:title="@string/action_listener_title"
+            android:summary="@string/action_listener_description"
+            android:key="@string/key_wechat_message"/>
+
+        <EditTextPreference
+            android:dependency="@string/key_robot_repley"
+            android:hint="@string/action_filter_hit"
+            android:summary="@string/action_filter_description"
+            android:key="filter_keywords"
+            android:title="@string/action_filter_msg" />
+
+        <Preference
+            android:key="@string/key_open_wechat"
+            android:title="@string/action_open_wechat"/>
+
+        <Preference
+            android:key="@string/key_enter_pyq"
+            android:title="@string/action_enter_pyq"/>
+
+        <Preference
+            android:key="@string/key_send_pyq"
+            android:title="@string/action_send_pyq"/>
+
+        <site.duqian.autowechat.android.view.CustomSwitchPreference
+            android:title="@string/action_lucky_money"
+            android:summary="@string/action_lucky_money_description"
+            android:defaultValue="false"
+            android:key="@string/key_lucky_money"/>
+
+        <!--<Preference
+            android:key="@string/key_no_reply"
+            android:title="@string/action_filter_msg"
+            android:summary="@string/action_filter_description"/>-->
+       <!--
+       <Preference
+            android:key="@string/key_send_message"
+            android:title="@string/action_send_msg"/>
+        <Preference
+            android:key="@string/key_auto_reply"
+            android:summary="@string/action_reply_tips"
+            android:title="@string/action_reply_msg"/>
+      -->
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
